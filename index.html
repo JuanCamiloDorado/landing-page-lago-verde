@@ -443,6 +443,10 @@ main.wrap { padding-top: 100px; }
   <!-- ======================= HERO ======================= -->
   <section class="hero" aria-roledescription="carrusel" aria-label="Destacados">
     <article class="hero__slide is-active" data-duration="6000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2024/05/DSC00486-1-scaled.avif)">
+      <!-- Background video: the slide's photo shows while it loads. Plays (muted) only while this slide is active. -->
+      <div class="hero__media" aria-hidden="true">
+        <video src="assets/hero-lago-verde.mp4" poster="https://thegrounds.com.au/wp-content/uploads/2024/05/DSC00486-1-scaled.avif" muted loop playsinline preload="auto"></video>
+      </div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content-wrap">
         <div class="hero__content">
@@ -742,17 +746,32 @@ main.wrap { padding-top: 100px; }
   const hero = document.querySelector('.hero');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let current = 0, timer, paused = false;
+  // A slide with a background video stays up for one full play of the video; others use data-duration.
+  const slideMs = (s) => {
+    const v = s.querySelector('video');
+    return v && v.duration ? v.duration * 1000 : Number(s.dataset.duration) || 6000;
+  };
   const schedule = () => {
     clearTimeout(timer);
     if (paused || reduceMotion) return;
-    timer = setTimeout(() => show(current + 1), Number(slides[current].dataset.duration) || 6000);
+    timer = setTimeout(() => show(current + 1), slideMs(slides[current]));
   };
   const show = (i) => {
     current = (i + slides.length) % slides.length;
-    slides.forEach((s, n) => s.classList.toggle('is-active', n === current));
+    slides.forEach((s, n) => {
+      s.classList.toggle('is-active', n === current);
+      const v = s.querySelector('.hero__media video');
+      if (!v) return;
+      if (n === current && !reduceMotion) { v.currentTime = 0; v.play().catch(() => {}); } else v.pause();
+    });
     dots.forEach((d, n) => { d.classList.toggle('is-active', n === current); d.setAttribute('aria-selected', n === current); });
     schedule();
   };
+  // The video's length is only known once its metadata loads; re-time the slide if it's showing.
+  slides.forEach((s, n) => {
+    const v = s.querySelector('.hero__media video');
+    if (v) v.addEventListener('loadedmetadata', () => { if (n === current) schedule(); });
+  });
   const pause = () => { paused = true; clearTimeout(timer); };
   const resume = () => { paused = false; schedule(); };
   hero.addEventListener('mouseenter', pause);
