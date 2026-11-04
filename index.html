@@ -125,14 +125,11 @@ h1, h2, h3 { margin: 0; }
 
 /* ===== Header: main menu (overlays the hero) ===== */
 .hero-wrap { position: relative; }
-.mainmenu { position: absolute; inset: 0 0 auto 0; z-index: 10; padding: 0 10px; }
-.mainmenu .container { display: flex; align-items: center; height: 67px; }
+.mainmenu { position: absolute; inset: 0 0 auto 0; z-index: 10; padding: 8px 10px 0; }
+.mainmenu .container { display: flex; align-items: center; height: 104px; }
 .mainmenu__logo { flex: 0 0 20%; }
-.brand {
-  display: inline-block; color: var(--c-white); text-decoration: none; white-space: nowrap;
-  font-family: var(--f-brand); font-size: 28px; line-height: 1; letter-spacing: .16em; text-transform: uppercase;
-  -webkit-text-stroke: .5px currentColor;
-}
+.brand { display: inline-block; line-height: 0; }
+.brand img { height: 84px; width: auto; filter: drop-shadow(0 1px 8px rgba(0,0,0,.35)); }
 .mainmenu__nav { flex: 1; display: flex; justify-content: center; padding-left: 96px; }
 .mainmenu__nav ul { display: flex; margin: 0; padding: 0; list-style: none; }
 .mainmenu__nav a {
@@ -276,13 +273,8 @@ main.wrap { padding-top: 100px; }
 .socials a:hover { color: var(--c-primary); }
 .socials svg { width: 21px; height: 21px; }
 .footer-logo { display: flex; justify-content: center; padding: 15px 10px 20px; }
-.brand-stack {
-  display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--c-text); text-decoration: none;
-  font-family: var(--f-brand); text-transform: uppercase; line-height: 1; -webkit-text-stroke: .4px currentColor;
-}
-.brand-stack__top { display: flex; align-items: center; gap: 10px; font-size: 21px; letter-spacing: .14em; }
-.brand-stack__top::before, .brand-stack__top::after { content: ""; width: 18px; border-top: 1px solid currentColor; }
-.brand-stack__name { font-size: 26px; letter-spacing: .16em; }
+.footer-logo a { display: block; line-height: 0; }
+.footer-logo img { width: 210px; height: auto; }
 .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; padding: 0 0; font-size: 14px; }
 .footer-bottom ul { flex: 0 0 50%; display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; }
 .footer-bottom .credits { flex: 0 0 50%; display: flex; justify-content: flex-end; gap: 20px; }
@@ -304,11 +296,12 @@ main.wrap { padding-top: 100px; }
   :root { --container: 1024px; }
   .tabs a { font-size: 15px; padding: 0 14px; }
   .mainmenu__logo { flex: 1; }
-  .brand { font-size: 22px; }
+  .brand img { height: 64px; }
+  .mainmenu .container { height: 84px; }
   .mainmenu__nav, .mainmenu__cta { display: none; }
   .menu-toggle { display: block; }
   .mainmenu.is-open .mainmenu__nav {
-    display: block; position: absolute; top: 67px; left: 0; right: 0; background: var(--c-primary); padding: 10px 20px;
+    display: block; position: absolute; top: 84px; left: 0; right: 0; background: var(--c-primary); padding: 10px 20px;
   }
   .mainmenu.is-open .mainmenu__nav ul { flex-direction: column; }
   .hero__heading { font-size: 50px; }
@@ -370,7 +363,7 @@ main.wrap { padding-top: 100px; }
   <div class="mainmenu" id="mainmenu">
     <div class="container">
       <div class="mainmenu__logo">
-        <a class="brand" href="#">Lago Verde</a>
+        <a class="brand" href="#"><img src="assets/logo-lago-verde-white.png" alt="Parque Comercial Lago Verde" width="768" height="308"></a>
       </div>
       <nav class="mainmenu__nav" aria-label="Main">
         <ul>
@@ -603,7 +596,7 @@ main.wrap { padding-top: 100px; }
       </div>
     </div>
     <div class="footer-logo">
-      <a class="brand-stack" href="#" aria-label="Lago Verde"><span class="brand-stack__top">Lago</span><span class="brand-stack__name">Verde</span></a>
+      <a href="#"><img src="assets/logo-lago-verde.png" alt="Parque Comercial Lago Verde" width="768" height="308" loading="lazy"></a>
     </div>
     <div class="footer-bottom">
       <ul>
