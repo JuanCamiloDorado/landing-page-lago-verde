@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Grounds — Dine (design replica)</title>
+<title>Lago Verde — Dine</title>
 <!--
-  Design replica of the "DINE" tab of thegrounds.com.au, built from evidence captured with REA
-  (DOM, screenshots and the site's own Elementor/theme CSS). For study purposes only.
+  Lago Verde landing page. Layout and visual design are based on the "DINE" tab of thegrounds.com.au,
+  reverse-engineered with REA (DOM, screenshots and the site's own Elementor/theme CSS).
 
   Fonts: the original uses commercial fonts (Germaine, Trade Gothic LT Std Bold Extended,
   TradeGothic LT Regular). They are requested via local() first; if they are not installed,
   free look-alikes from Google Fonts are used (Archivo with its width axis, and Marcellus).
   If you hold a license, add url("fonts/<file>") to the @font-face rules below.
 
-  Photos, videos, logos and copy belong to The Grounds (and Disney for the hero slide);
-  they are hotlinked as placeholders and must be replaced before any real use.
+  Photos and videos are still hotlinked from thegrounds.com.au as placeholders; they belong to
+  The Grounds and must be replaced with Lago Verde's own images before any real use.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,7 +128,11 @@ h1, h2, h3 { margin: 0; }
 .mainmenu { position: absolute; inset: 0 0 auto 0; z-index: 10; padding: 0 10px; }
 .mainmenu .container { display: flex; align-items: center; height: 67px; }
 .mainmenu__logo { flex: 0 0 20%; }
-.mainmenu__logo img { width: 246px; height: auto; }
+.brand {
+  display: inline-block; color: var(--c-white); text-decoration: none; white-space: nowrap;
+  font-family: var(--f-brand); font-size: 28px; line-height: 1; letter-spacing: .16em; text-transform: uppercase;
+  -webkit-text-stroke: .5px currentColor;
+}
 .mainmenu__nav { flex: 1; display: flex; justify-content: center; padding-left: 96px; }
 .mainmenu__nav ul { display: flex; margin: 0; padding: 0; list-style: none; }
 .mainmenu__nav a {
@@ -272,11 +276,16 @@ main.wrap { padding-top: 100px; }
 .socials a:hover { color: var(--c-primary); }
 .socials svg { width: 21px; height: 21px; }
 .footer-logo { display: flex; justify-content: center; padding: 15px 10px 20px; }
-.footer-logo img { width: 152px; height: auto; }
+.brand-stack {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--c-text); text-decoration: none;
+  font-family: var(--f-brand); text-transform: uppercase; line-height: 1; -webkit-text-stroke: .4px currentColor;
+}
+.brand-stack__top { display: flex; align-items: center; gap: 10px; font-size: 21px; letter-spacing: .14em; }
+.brand-stack__top::before, .brand-stack__top::after { content: ""; width: 18px; border-top: 1px solid currentColor; }
+.brand-stack__name { font-size: 26px; letter-spacing: .16em; }
 .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; padding: 0 0; font-size: 14px; }
 .footer-bottom ul { flex: 0 0 50%; display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; }
 .footer-bottom .credits { flex: 0 0 50%; display: flex; justify-content: flex-end; gap: 20px; }
-.footer-bottom .credits strong a { text-transform: none; font-weight: 700; }
 
 /* ===== Entrance animation (Elementor fadeIn / slideInUp) ===== */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
@@ -295,7 +304,7 @@ main.wrap { padding-top: 100px; }
   :root { --container: 1024px; }
   .tabs a { font-size: 15px; padding: 0 14px; }
   .mainmenu__logo { flex: 1; }
-  .mainmenu__logo img { width: 197px; }
+  .brand { font-size: 22px; }
   .mainmenu__nav, .mainmenu__cta { display: none; }
   .menu-toggle { display: block; }
   .mainmenu.is-open .mainmenu__nav {
@@ -352,7 +361,7 @@ main.wrap { padding-top: 100px; }
     </div>
   </div>
   <div class="announcement">
-    <a href="#">The Grounds’ famous Sunday Roast is back!</a>
+    <a href="#">Lago Verde’s famous Sunday Roast is back!</a>
   </div>
 </header>
 
@@ -361,7 +370,7 @@ main.wrap { padding-top: 100px; }
   <div class="mainmenu" id="mainmenu">
     <div class="container">
       <div class="mainmenu__logo">
-        <a href="#"><img src="https://thegrounds.com.au/wp-content/uploads/2024/06/the-grounds-logo.svg" alt="The Grounds"></a>
+        <a class="brand" href="#">Lago Verde</a>
       </div>
       <nav class="mainmenu__nav" aria-label="Main">
         <ul>
@@ -380,19 +389,14 @@ main.wrap { padding-top: 100px; }
 
   <!-- ======================= HERO ======================= -->
   <section class="hero" aria-roledescription="carousel" aria-label="Featured">
-    <article class="hero__slide is-active" data-duration="6000">
-      <div class="hero__media">
-        <video autoplay muted loop playsinline poster="https://thegrounds.com.au/wp-content/uploads/2026/09/C260910_The-Grounds-Laneway-shoot-54.jpg">
-          <source src="https://cdn.thegrounds.com.au/2026/08/WINNIE%20WEB%20VIDEO.mov" type="video/mp4">
-        </video>
-      </div>
+    <article class="hero__slide is-active" data-duration="6000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2024/05/DSC00486-1-scaled.avif)">
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content-wrap">
         <div class="hero__content">
           <div class="hero__text">
-            <span class="hero__eyebrow display">Disney’s</span>
-            <h1 class="hero__heading display">Winnie The Pooh</h1>
-            <p class="hero__subheading display">at The Grounds of Alexandria</p>
+            <span class="hero__eyebrow display">Welcome to</span>
+            <h1 class="hero__heading display">Lago Verde</h1>
+            <p class="hero__subheading display">Food, coffee &amp; events</p>
           </div>
           <div class="hero__buttons">
             <a class="btn btn--green" href="#">Learn More</a>
@@ -407,7 +411,7 @@ main.wrap { padding-top: 100px; }
         <div class="hero__content">
           <div class="hero__text">
             <h2 class="hero__heading display">Sunday Roast</h2>
-            <p class="hero__subheading display">At The Grounds Potting Shed</p>
+            <p class="hero__subheading display">At The Potting Shed</p>
           </div>
           <div class="hero__buttons">
             <a class="btn btn--green" href="#">Book Now</a>
@@ -445,9 +449,9 @@ main.wrap { padding-top: 100px; }
           </div>
         </article>
         <article class="venue">
-          <a class="venue__img" href="#"><img loading="lazy" src="https://thegrounds.com.au/wp-content/uploads/2024/06/DSC06496-scaled.avif" alt="The Grounds Cafe"></a>
+          <a class="venue__img" href="#"><img loading="lazy" src="https://thegrounds.com.au/wp-content/uploads/2024/06/DSC06496-scaled.avif" alt="Lago Verde Cafe"></a>
           <div class="venue__loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 1 1 13 0C18.5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3"/></svg>Alexandria</div>
-          <h3 class="card-title display"><a href="#">The Grounds Cafe</a></h3>
+          <h3 class="card-title display"><a href="#">Lago Verde Cafe</a></h3>
           <p class="excerpt">Sit back and enjoy a hearty meal &amp; sweet treats in one of Sydney's most iconic eateries.</p>
           <div class="venue__actions">
             <a class="btn btn--green" href="#">Book Table</a>
@@ -479,7 +483,7 @@ main.wrap { padding-top: 100px; }
         <article class="wo-card">
           <a class="venue__img" href="#"><img loading="lazy" src="https://thegrounds.com.au/wp-content/uploads/2026/03/C260313_Thegrounds-72_websize.avif" alt="The Parlour Feast"></a>
           <h3 class="card-title display"><a href="#">The Parlour Feast</a></h3>
-          <p class="excerpt">Step inside The Parlour, a private dining room at The Grounds of Alexandria, and enjoy a banquet made for sharing.</p>
+          <p class="excerpt">Step inside The Parlour, a private dining room at Lago Verde, and enjoy a banquet made for sharing.</p>
           <div><a class="link link--md" href="#">Visit The Parlour Feast</a></div>
         </article>
         <article class="wo-card span-2">
@@ -573,7 +577,7 @@ main.wrap { padding-top: 100px; }
       </div>
       <div class="newsletter">
         <h2 class="display">Newsletter</h2>
-        <p class="lead">Receive The Grounds latest news directly to you.</p>
+        <p class="lead">Receive Lago Verde’s latest news directly to you.</p>
         <form class="nl-form" id="nl-form" novalidate>
           <fieldset>
             <legend>Tell us what you'd like to hear about.</legend>
@@ -599,7 +603,7 @@ main.wrap { padding-top: 100px; }
       </div>
     </div>
     <div class="footer-logo">
-      <a href="#"><img src="https://thegrounds.com.au/wp-content/uploads/2024/06/tglogo-footer.svg" alt="The Grounds — Est. 2012"></a>
+      <a class="brand-stack" href="#" aria-label="Lago Verde"><span class="brand-stack__top">Lago</span><span class="brand-stack__name">Verde</span></a>
     </div>
     <div class="footer-bottom">
       <ul>
@@ -608,8 +612,7 @@ main.wrap { padding-top: 100px; }
         <li><a href="#">Terms</a></li>
       </ul>
       <div class="credits">
-        <span>© 2026 The Grounds</span>
-        <span>Website by <strong><a href="#">G Squared</a></strong></span>
+        <span>© 2026 Lago Verde</span>
       </div>
     </div>
   </div>
