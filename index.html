@@ -233,6 +233,29 @@ main.wrap { padding-top: 100px; }
 .shop__details h3 { font-size: 30px; color: var(--c-white); text-align: center; }
 .shop__buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
+/* Day & night (content from lagoverde.com.co) */
+.daynight-intro { max-width: 780px; margin: 0 0 40px; font-size: 18px; line-height: 1.6; }
+.moment {
+  display: flex; flex-direction: column; gap: 18px; padding: 40px 36px;
+  background: var(--c-bg-alt); border-top: 3px solid var(--c-primary);
+}
+.moment__icon { width: 36px; height: 36px; color: var(--c-primary); }
+.moment__time { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--c-primary); }
+.moment h3 { font-size: 18px; line-height: 24px; }
+.moment ul { display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.moment li { position: relative; padding-left: 18px; font-size: 16px; line-height: 1.5; }
+.moment li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--c-sage); }
+
+/* Plan your visit band */
+.visit { margin-top: 100px; padding: 90px 0; background: var(--c-primary); color: var(--c-white); }
+.visit h2 { font-size: 30px; color: var(--c-white); margin-bottom: 50px; }
+.visit__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; margin: 0; }
+.visit__grid dt { margin-bottom: 10px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--c-sage-light); }
+.visit__grid dd { margin: 0; font-size: 17px; line-height: 1.5; }
+.visit__grid dd strong { display: block; margin-bottom: 4px; font-family: var(--f-display); font-stretch: var(--display-stretch); font-weight: 700; font-size: 18px; text-transform: uppercase; }
+.visit__tagline { margin: 60px 0 0; font-size: 20px; color: var(--c-sage-light); }
+.visit + .site-footer.wrap { padding-top: 40px; }
+
 /* ===== Footer ===== */
 .site-footer.wrap { padding-top: 100px; padding-bottom: 60px; }
 .site-footer .divider { margin: 15px 0 75px; }
@@ -310,6 +333,7 @@ main.wrap { padding-top: 100px; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .wo-grid .span-2 { grid-column: span 2; }
   .wo-card .venue__img img { height: 420px; }
+  .visit__grid { grid-template-columns: repeat(2, 1fr); }
   .footer-links, .newsletter { flex-basis: 100%; }
   .newsletter { margin-top: 40px; }
 }
@@ -325,6 +349,9 @@ main.wrap { padding-top: 100px; }
   .grid-3 { grid-template-columns: 1fr; }
   .wo-grid .span-2 { grid-column: auto; }
   .wo-card .venue__img img { height: 320px; }
+  .visit__grid { grid-template-columns: 1fr; }
+  .visit { padding: 60px 0; margin-top: 60px; }
+  .moment { padding: 30px 24px; }
   .arch { min-height: 440px; }
   .shop { flex-direction: column; }
   .shop__details h3 { font-size: 20px; }
@@ -370,7 +397,7 @@ main.wrap { padding-top: 100px; }
           <li><a href="#whats-on">What’s On</a></li>
           <li><a href="#dine">Venues</a></li>
           <li><a href="#">Takeaway</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="#dia-y-noche">About</a></li>
         </ul>
       </nav>
       <div class="mainmenu__cta"><a href="#" class="btn btn--green">Book Table</a></div>
@@ -423,6 +450,50 @@ main.wrap { padding-top: 100px; }
 <!-- ======================= MAIN ======================= -->
 <main class="wrap">
   <div class="container">
+
+    <!-- De día y de noche (contenido de lagoverde.com.co) -->
+    <section id="dia-y-noche">
+      <div class="section-head reveal">
+        <h2 class="display">De día y de noche</h2>
+        <a class="link link--lg" href="#visita">Planea tu visita</a>
+      </div>
+      <p class="daynight-intro">En medio del sur de Cali, Lago Verde es la pausa perfecta: un Parque Comercial en Pance diseñado para disfrutar sin prisa frente al lago, del amanecer al anochecer, de 5 a.m. a 11 p.m. y con todo lo que necesitas en un solo lugar.</p>
+      <div class="grid-3">
+        <article class="moment">
+          <svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 4v3M4.9 9.9l1.4 1.4M19.1 9.9l-1.4 1.4M2 14h2M20 14h2"/></svg>
+          <span class="moment__time">Desde las 5:00 a.m.</span>
+          <h3 class="display">Empieza el día con energía</h3>
+          <ul>
+            <li><strong>Entrena en el gym</strong> y activa tu día en un lugar que solo transmite paz.</li>
+            <li><strong>Desayuna en las panaderías:</strong> café recién hecho y pandebono caliente al aire libre.</li>
+            <li><strong>Ven con tu mascota:</strong> un ecosistema natural para que tu peludo también disfrute del paseo.</li>
+          </ul>
+        </article>
+        <article class="moment">
+          <svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+          <span class="moment__time">Al mediodía</span>
+          <h3 class="display">Almuerza y relájate</h3>
+          <ul>
+            <li><strong>Almuerzo a tu gusto:</strong> restaurantes gourmet, cocina local o comida saludable.</li>
+            <li><strong>Caminata frente al lago:</strong> observa el lago, alimenta los peces o simplemente déjate llevar.</li>
+            <li><strong>Retoque de estilo</strong> en la barbería y los servicios de belleza.</li>
+            <li><strong>La Nave Espacial:</strong> zona de juegos segura y sin costo para los más pequeños.</li>
+          </ul>
+        </article>
+        <article class="moment">
+          <svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/><path d="M16 3.5l.5 1.5 1.5.5-1.5.5-.5 1.5-.5-1.5-1.5-.5 1.5-.5Z"/></svg>
+          <span class="moment__time">Hasta las 11:00 p.m.</span>
+          <h3 class="display">El plan de la noche</h3>
+          <ul>
+            <li><strong>Cervecerías y bares</strong> para compartir una cena con buenos brindis frente al lago.</li>
+            <li><strong>Terrazas iluminadas</strong> con coctelería artesanal y cerveza local.</li>
+            <li><strong>Un ambiente acogedor</strong> para conversar con amigos mientras cae la tarde sobre Pance.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <hr class="divider">
 
     <!-- Dine + Drink -->
     <section id="dine">
@@ -551,6 +622,21 @@ main.wrap { padding-top: 100px; }
     </section>
   </div>
 </main>
+
+<!-- Planea tu visita (contenido de lagoverde.com.co) -->
+<section class="visit wrap" id="visita">
+  <div class="container">
+    <h2 class="display reveal">Planea tu visita</h2>
+    <dl class="visit__grid">
+      <div><dt>Ubicación</dt><dd><strong>Pance, sur de Cali</strong>Calle 16A con 122. Llega en carro particular o en transporte público.</dd></div>
+      <div><dt>Horario</dt><dd><strong>5:00 a.m. – 11:00 p.m.</strong>Del primer café a la última copa.</dd></div>
+      <div><dt>Parqueadero</dt><dd><strong>Franjas sin costo</strong>Disponibles para todos los visitantes.</dd></div>
+      <div><dt>Petfriendly</dt><dd><strong>Trae a tu mascota</strong>Espacios al aire libre rodeados de naturaleza.</dd></div>
+      <div><dt>Para niños</dt><dd><strong>La Nave Espacial</strong>Zona de juegos gratuita, segura y divertida.</dd></div>
+    </dl>
+    <p class="visit__tagline">La próxima vez que te preguntes qué hacer en Cali, la respuesta puede ser simple: pasar un día completo en Lago Verde.</p>
+  </div>
+</section>
 
 <!-- ======================= FOOTER ======================= -->
 <footer class="site-footer wrap">

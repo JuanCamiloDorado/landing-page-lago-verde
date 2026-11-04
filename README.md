@@ -14,6 +14,7 @@ Abre `index.html` en el navegador. No necesita instalación ni build.
 - **Colores:** verde `#205C40` (hover `#173D2C`), fondo `#F8F8F4`, texto `#121212`, líneas `#C5C4AC` y marrón `#635B49`. Están todos como variables CSS al inicio del archivo.
 - **Tipografía:** Trade Gothic LT Std Bold Extended (títulos y botones), TradeGothic LT Regular (textos) y Germaine (pestañas). Son fuentes comerciales: si están instaladas se usan; si no, se cargan los sustitutos gratuitos Archivo y Marcellus de Google Fonts.
 - **Layout:** contenedor de 1366 px, hero a pantalla completa con carrusel, y las secciones Dine + Drink, What's On, Events (tarjetas en arco), Shop (video al pasar el mouse) y footer con newsletter.
+- **Contenido de Lago Verde:** las secciones "De día y de noche" y "Planea tu visita" (ubicación, horario, parqueadero, petfriendly y zona de niños) salen del artículo [Qué hacer en Cali: disfruta Lago Verde de día y de noche](https://lagoverde.com.co/que-hacer-en-cali-disfruta-lago-verde-de-dia-y-de-noche/), y están en español.
 - **Interacción:** carrusel automático de 6 s, animaciones de entrada al hacer scroll, menú móvil y formulario de newsletter de demostración (no envía datos).
 
 ## Cómo se obtuvo el diseño
