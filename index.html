@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Parque Comercial Lago Verde en Pance, al sur de Cali: restaurantes, bares, gym, panaderías y zona de juegos gratis frente al lago, de 5 a.m. a 11 p.m. Petfriendly y con franjas de parqueo sin costo.">
+<meta name="description" content="Parque Comercial Lago Verde en Pance, sur de Cali: más de 40 locales con restaurantes, bares, gimnasio y panaderías frente al lago. Abierto de 5 a.m. a 11 p.m.">
 <title>Lago Verde — Parque Comercial en Pance, Cali</title>
 <!--
   Lago Verde landing page. Layout and visual design are based on the "DINE" tab of thegrounds.com.au,
@@ -129,10 +129,10 @@ h1, h2, h3 { margin: 0; }
 .hero-wrap { position: relative; }
 .mainmenu { position: absolute; inset: 0 0 auto 0; z-index: 10; padding: 8px 10px 0; }
 .mainmenu .container { display: flex; align-items: center; height: 92px; }
-.mainmenu__logo { flex: 0 0 20%; }
+.mainmenu__logo { flex: 0 0 20%; display: flex; align-items: center; }
 .brand { display: inline-block; line-height: 0; }
 .brand img { height: 70px; width: auto; filter: drop-shadow(0 1px 8px rgba(0,0,0,.35)); }
-.mainmenu__nav { flex: 1; display: flex; justify-content: center; padding-left: 96px; }
+.mainmenu__nav { flex: 1; display: flex; justify-content: center; }
 .mainmenu__nav ul { display: flex; margin: 0; padding: 0; list-style: none; }
 .mainmenu__nav a {
   display: block; padding: 13px 20px; color: var(--c-white); text-decoration: none;
@@ -154,31 +154,35 @@ h1, h2, h3 { margin: 0; }
 .hero__slide.is-active { opacity: 1; pointer-events: auto; }
 .hero__media { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
 .hero__media video, .hero__media img { width: 100%; height: 100%; object-fit: cover; }
-.hero__overlay { position: absolute; inset: 0; z-index: 2; background: rgba(0,0,0,.45); opacity: .45; }
+.hero__overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, rgba(0,0,0,.34) 0%, rgba(0,0,0,.48) 100%); }
 .hero__content-wrap {
   position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; width: 100%;
   padding: calc(var(--menu-h) + 24px) clamp(20px,6vw,120px) clamp(40px,5vw,80px);
 }
 .hero__content { display: flex; flex-direction: column; gap: 16px; max-width: 1200px; color: var(--c-white); text-align: center; }
 .hero__text { display: flex; flex-direction: column; gap: 12px; }
-.hero__eyebrow { font-size: 24px; line-height: 1.2; }
+.hero__eyebrow { font-size: 24px; line-height: 1.2; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.hero__heading { text-shadow: 0 2px 18px rgba(0,0,0,.30); }
 .hero__heading { font-size: 100px; line-height: 1.05; color: var(--c-white); }
 .hero__subheading { margin: 0; font-size: 30px; line-height: 1.5; }
-.hero__overlay--strong { background: linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.50) 100%); opacity: 1; }
-.hero__heading--sentence { max-width: 1100px; margin: 0 auto; font-size: 64px; line-height: 1.05; }
+.hero__overlay--strong {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 55%, rgba(0,0,0,.30), transparent 75%),
+    linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.58) 100%);
+}
+.hero__heading--sentence { max-width: 1150px; margin: 0 auto; font-size: 48px; line-height: 1.1; text-wrap: balance; }
 .btn [aria-hidden] { margin-left: 8px; }
 @media (min-width: 1025px) and (max-height: 800px) {
-  .hero__heading--sentence { font-size: 54px; }
-  .hero__lead { font-size: 18px; }
+  .hero__heading--sentence { font-size: 42px; }
 }
 .hero__lead {
-  max-width: 760px; margin: 4px auto 0; font-size: 20px; line-height: 1.5;
+  max-width: 760px; margin: 6px auto 8px; font-size: 20px; line-height: 1.5; letter-spacing: .02em;
   text-shadow: 0 1px 12px rgba(0,0,0,.35);
 }
-.hero__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 4px 0 8px; padding: 0; list-style: none; }
+.hero__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 6px 0 4px; padding: 0; list-style: none; }
 .hero__chips li {
   padding: 7px 14px; border: 1px solid rgba(255,255,255,.65); border-radius: 2px;
-  background: rgba(0,0,0,.22); backdrop-filter: blur(4px);
+  background: rgba(0,0,0,.38); backdrop-filter: blur(4px);
   font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
 }
 .hero__buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
@@ -187,12 +191,15 @@ h1, h2, h3 { margin: 0; }
 .hero__buttons .btn--green:hover, .hero__buttons .btn--ghost:hover {
   background: var(--c-white); color: var(--c-primary); border-color: var(--c-white);
 }
-.hero__dots { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; gap: 10px; z-index: 4; }
-.hero__dot {
-  width: 15px; height: 15px; padding: 0; border-radius: 50%; border: 1px solid var(--c-white);
-  background: transparent; opacity: .7; cursor: pointer;
+.hero__dots { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 4px; z-index: 4; }
+.hero__dot { position: relative; width: 36px; height: 36px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.hero__dot::before {
+  content: ""; position: absolute; inset: 10px; border-radius: 50%;
+  border: 1.5px solid var(--c-white); opacity: .8; transition: background-color .2s ease, opacity .2s ease;
 }
-.hero__dot.is-active { background: var(--c-white); opacity: 1; }
+.hero__dot:hover::before { opacity: 1; }
+.hero__dot.is-active::before { background: var(--c-white); opacity: 1; }
+.hero__dot:focus-visible { outline: 2px solid var(--c-white); outline-offset: -3px; border-radius: 50%; }
 
 /* ===== Content sections ===== */
 main.wrap { padding-top: 100px; }
@@ -331,7 +338,6 @@ main.wrap { padding-top: 100px; }
 
 /* ===== Responsive ===== */
 @media (max-width: 1280px) {
-  .mainmenu__nav { padding-left: 0; }
   .mainmenu__nav a { padding: 13px 10px; font-size: 14px; }
 }
 @media (max-width: 1024px) {
@@ -350,7 +356,7 @@ main.wrap { padding-top: 100px; }
   .hero__subheading { font-size: 15px; }
   .hero__eyebrow { font-size: 18px; }
   :root { --menu-h: 76px; }
-  .hero__heading--sentence { font-size: 44px; }
+  .hero__heading--sentence { font-size: 36px; }
   .hero__lead { font-size: 17px; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .wo-grid .span-2 { grid-column: span 2; }
@@ -366,11 +372,11 @@ main.wrap { padding-top: 100px; }
   .announcement a { font-size: 12px; }
   .hero { height: calc(100vh - 82px - 67px); }
   .hero__heading { font-size: 30px; }
-  .hero__heading--sentence { font-size: 28px; }
+  .hero__heading--sentence { font-size: 24px; }
+  .hero__chips li { font-size: 12px; padding: 6px 10px; }
   .hero__eyebrow { font-size: 14px; }
   .hero__content-wrap { padding: calc(var(--menu-h) + 16px) 20px 48px; }
   .hero__lead { font-size: 15px; }
-  .hero__chips li { font-size: 12px; padding: 6px 10px; }
   .hero__buttons { flex-direction: column; align-items: stretch; }
   .section-head h2 { font-size: 24px; }
   .grid-3 { grid-template-columns: 1fr; }
@@ -423,7 +429,6 @@ main.wrap { padding-top: 100px; }
         <ul>
           <li><a href="#whats-on">Agenda</a></li>
           <li><a href="#dine">Locales</a></li>
-          <li><a href="#">Para llevar</a></li>
           <li><a href="#dia-y-noche">Nosotros</a></li>
         </ul>
       </nav>
@@ -436,14 +441,29 @@ main.wrap { padding-top: 100px; }
 
   <!-- ======================= HERO ======================= -->
   <section class="hero" aria-roledescription="carrusel" aria-label="Destacados">
-    <article class="hero__slide is-active" data-duration="9000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2024/05/DSC00486-1-scaled.avif)">
+    <article class="hero__slide is-active" data-duration="6000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2024/05/DSC00486-1-scaled.avif)">
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content-wrap">
+        <div class="hero__content">
+          <div class="hero__text">
+            <span class="hero__eyebrow display">Bienvenidos a</span>
+            <h1 class="hero__heading display">Lago Verde</h1>
+            <p class="hero__lead">Parque Comercial en Pance, sur de Cali</p>
+          </div>
+          <div class="hero__buttons">
+            <a class="btn btn--green" href="#dine">Ver locales</a>
+            <a class="btn btn--ghost" href="#visita">Cómo llegar <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="hero__slide" data-duration="9000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2026/06/hi-res-1-1-scaled.jpg)">
       <div class="hero__overlay hero__overlay--strong" aria-hidden="true"></div>
       <div class="hero__content-wrap">
         <div class="hero__content">
           <div class="hero__text">
-            <span class="hero__eyebrow display">Parque Comercial Lago Verde</span>
-            <h1 class="hero__heading hero__heading--sentence display">Vive el día completo frente al lago</h1>
-            <p class="hero__lead">Gym y panaderías al amanecer, restaurantes al mediodía, bares y terrazas en la noche. En Pance, al sur de Cali, de 5 a.m. a 11 p.m.</p>
+            <h2 class="hero__heading hero__heading--sentence display">Bienestar, sabor y naturaleza en un solo lugar</h2>
+            <p class="hero__lead">Lago Verde reúne <strong>más de 40 locales</strong>: restaurantes, panaderías, gimnasio, bares y terrazas frente al lago, en Pance, al sur de Cali. Abierto de 5&nbsp;a.m. a 11&nbsp;p.m.</p>
           </div>
           <ul class="hero__chips" aria-label="Servicios">
             <li>Petfriendly</li>
@@ -451,23 +471,7 @@ main.wrap { padding-top: 100px; }
             <li>Zona de juegos gratis</li>
           </ul>
           <div class="hero__buttons">
-            <a class="btn btn--green" href="#dia-y-noche">Explora el día y la noche</a>
-            <a class="btn btn--ghost" href="#visita">Cómo llegar <span aria-hidden="true">↓</span></a>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="hero__slide" data-duration="6000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2026/06/hi-res-1-1-scaled.jpg)">
-      <div class="hero__overlay" aria-hidden="true"></div>
-      <div class="hero__content-wrap">
-        <div class="hero__content">
-          <div class="hero__text">
-            <h2 class="hero__heading display">Asado del domingo</h2>
-            <p class="hero__subheading display">En The Potting Shed</p>
-          </div>
-          <div class="hero__buttons">
-            <a class="btn btn--green" href="#">Reserva ahora</a>
-            <a class="btn btn--ghost" href="#">Conoce más</a>
+            <a class="btn btn--green" href="#dine">Ver los locales</a>
           </div>
         </div>
       </div>
@@ -489,7 +493,7 @@ main.wrap { padding-top: 100px; }
         <h2 class="display">De día y de noche</h2>
         <a class="link link--lg" href="#visita">Planea tu visita</a>
       </div>
-      <p class="daynight-intro">En medio del sur de Cali, Lago Verde es la pausa perfecta: un Parque Comercial en Pance diseñado para disfrutar sin prisa frente al lago, del amanecer al anochecer, de 5 a.m. a 11 p.m. y con todo lo que necesitas en un solo lugar.</p>
+      <p class="daynight-intro">En medio del sur de Cali, Lago Verde es la pausa perfecta: un Parque Comercial en Pance diseñado para disfrutar sin prisa frente al lago, del amanecer al anochecer, de 5&nbsp;a.m. a 11&nbsp;p.m. y con todo lo que necesitas en un solo lugar.</p>
       <div class="grid-3">
         <article class="moment">
           <svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 4v3M4.9 9.9l1.4 1.4M19.1 9.9l-1.4 1.4M2 14h2M20 14h2"/></svg>
@@ -734,14 +738,26 @@ main.wrap { padding-top: 100px; }
   // Hero slider: fade, autoplay per slide duration, clickable dots
   const slides = [...document.querySelectorAll('.hero__slide')];
   const dots = [...document.querySelectorAll('.hero__dot')];
-  let current = 0, timer;
+  const hero = document.querySelector('.hero');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0, timer, paused = false;
+  const schedule = () => {
+    clearTimeout(timer);
+    if (paused || reduceMotion) return;
+    timer = setTimeout(() => show(current + 1), Number(slides[current].dataset.duration) || 6000);
+  };
   const show = (i) => {
     current = (i + slides.length) % slides.length;
     slides.forEach((s, n) => s.classList.toggle('is-active', n === current));
     dots.forEach((d, n) => { d.classList.toggle('is-active', n === current); d.setAttribute('aria-selected', n === current); });
-    clearTimeout(timer);
-    timer = setTimeout(() => show(current + 1), Number(slides[current].dataset.duration) || 6000);
+    schedule();
   };
+  const pause = () => { paused = true; clearTimeout(timer); };
+  const resume = () => { paused = false; schedule(); };
+  hero.addEventListener('mouseenter', pause);
+  hero.addEventListener('mouseleave', resume);
+  hero.addEventListener('focusin', pause);
+  hero.addEventListener('focusout', (e) => { if (!hero.contains(e.relatedTarget)) resume(); });
   dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
   if (slides.length) show(0);
 
