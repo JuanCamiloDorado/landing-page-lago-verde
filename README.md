@@ -1,4 +1,4 @@
-# The Grounds — réplica de diseño (pestaña DINE)
+# Landing page Lago Verde
 
 Réplica estática del diseño visual de la pestaña **DINE** de [thegrounds.com.au](https://thegrounds.com.au/), hecha como ejercicio de estudio de diseño web.
 
