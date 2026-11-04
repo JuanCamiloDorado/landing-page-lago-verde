@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Parque Comercial Lago Verde en Pance, al sur de Cali: restaurantes, bares, gym, panaderías y zona de juegos gratis frente al lago, de 5 a.m. a 11 p.m. Petfriendly y con franjas de parqueo sin costo.">
 <title>Lago Verde — Parque Comercial en Pance, Cali</title>
 <!--
   Lago Verde landing page. Layout and visual design are based on the "DINE" tab of thegrounds.com.au,
@@ -50,6 +51,7 @@
 
   --container: 1366px;
   --header-h: 149px;          /* tab bar 46 + announcement 36 + main menu 67 */
+  --menu-h: 100px;            /* main menu overlaid on the hero (incl. top padding) */
   --display-stretch: 118%;    /* Archivo width that best matches Trade Gothic Bold Extended */
 }
 
@@ -155,13 +157,30 @@ h1, h2, h3 { margin: 0; }
 .hero__overlay { position: absolute; inset: 0; z-index: 2; background: rgba(0,0,0,.45); opacity: .45; }
 .hero__content-wrap {
   position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; width: 100%;
-  padding: clamp(40px,6vw,96px) clamp(20px,6vw,120px);
+  padding: calc(var(--menu-h) + 24px) clamp(20px,6vw,120px) clamp(40px,5vw,80px);
 }
 .hero__content { display: flex; flex-direction: column; gap: 16px; max-width: 1200px; color: var(--c-white); text-align: center; }
 .hero__text { display: flex; flex-direction: column; gap: 12px; }
 .hero__eyebrow { font-size: 24px; line-height: 1.2; }
 .hero__heading { font-size: 100px; line-height: 1.05; color: var(--c-white); }
 .hero__subheading { margin: 0; font-size: 30px; line-height: 1.5; }
+.hero__overlay--strong { background: linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.50) 100%); opacity: 1; }
+.hero__heading--sentence { max-width: 1100px; margin: 0 auto; font-size: 64px; line-height: 1.05; }
+.btn [aria-hidden] { margin-left: 8px; }
+@media (min-width: 1025px) and (max-height: 800px) {
+  .hero__heading--sentence { font-size: 54px; }
+  .hero__lead { font-size: 18px; }
+}
+.hero__lead {
+  max-width: 760px; margin: 4px auto 0; font-size: 20px; line-height: 1.5;
+  text-shadow: 0 1px 12px rgba(0,0,0,.35);
+}
+.hero__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 4px 0 8px; padding: 0; list-style: none; }
+.hero__chips li {
+  padding: 7px 14px; border: 1px solid rgba(255,255,255,.65); border-radius: 2px;
+  background: rgba(0,0,0,.22); backdrop-filter: blur(4px);
+  font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+}
 .hero__buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
 .hero__buttons .btn { border-width: 2px; font-size: 16px; }
 .hero__buttons .btn--green { border-color: var(--c-primary); }
@@ -330,6 +349,9 @@ main.wrap { padding-top: 100px; }
   .hero__heading { font-size: 50px; }
   .hero__subheading { font-size: 15px; }
   .hero__eyebrow { font-size: 18px; }
+  :root { --menu-h: 76px; }
+  .hero__heading--sentence { font-size: 44px; }
+  .hero__lead { font-size: 17px; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .wo-grid .span-2 { grid-column: span 2; }
   .wo-card .venue__img img { height: 420px; }
@@ -344,6 +366,11 @@ main.wrap { padding-top: 100px; }
   .announcement a { font-size: 12px; }
   .hero { height: calc(100vh - 82px - 67px); }
   .hero__heading { font-size: 30px; }
+  .hero__heading--sentence { font-size: 28px; }
+  .hero__eyebrow { font-size: 14px; }
+  .hero__content-wrap { padding: calc(var(--menu-h) + 16px) 20px 48px; }
+  .hero__lead { font-size: 15px; }
+  .hero__chips li { font-size: 12px; padding: 6px 10px; }
   .hero__buttons { flex-direction: column; align-items: stretch; }
   .section-head h2 { font-size: 24px; }
   .grid-3 { grid-template-columns: 1fr; }
@@ -409,18 +436,23 @@ main.wrap { padding-top: 100px; }
 
   <!-- ======================= HERO ======================= -->
   <section class="hero" aria-roledescription="carrusel" aria-label="Destacados">
-    <article class="hero__slide is-active" data-duration="6000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2024/05/DSC00486-1-scaled.avif)">
-      <div class="hero__overlay" aria-hidden="true"></div>
+    <article class="hero__slide is-active" data-duration="9000" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2024/05/DSC00486-1-scaled.avif)">
+      <div class="hero__overlay hero__overlay--strong" aria-hidden="true"></div>
       <div class="hero__content-wrap">
         <div class="hero__content">
           <div class="hero__text">
-            <span class="hero__eyebrow display">Bienvenidos a</span>
-            <h1 class="hero__heading display">Lago Verde</h1>
-            <p class="hero__subheading display">Comida, café y eventos</p>
+            <span class="hero__eyebrow display">Parque Comercial Lago Verde</span>
+            <h1 class="hero__heading hero__heading--sentence display">Vive el día completo frente al lago</h1>
+            <p class="hero__lead">Gym y panaderías al amanecer, restaurantes al mediodía, bares y terrazas en la noche. En Pance, al sur de Cali, de 5 a.m. a 11 p.m.</p>
           </div>
+          <ul class="hero__chips" aria-label="Servicios">
+            <li>Petfriendly</li>
+            <li>Parqueo con franjas sin costo</li>
+            <li>Zona de juegos gratis</li>
+          </ul>
           <div class="hero__buttons">
-            <a class="btn btn--green" href="#">Conoce más</a>
-            <a class="btn btn--ghost" href="#whats-on">Agenda</a>
+            <a class="btn btn--green" href="#dia-y-noche">Explora el día y la noche</a>
+            <a class="btn btn--ghost" href="#visita">Cómo llegar <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </div>
