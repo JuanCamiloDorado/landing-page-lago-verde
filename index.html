@@ -56,7 +56,7 @@
   /* Hero type scale (fluid; caps by width and height so short laptops don't overflow) */
   --hero-eyebrow: clamp(12px, 0.3vw + 10.5px, 15px);
   --hero-brand: clamp(48px, min(7.2vw, 12vh), 128px);
-  --hero-title: clamp(24px, min(3.2vw, 6vh), 52px);
+  --hero-title: clamp(28px, min(3.6vw, 6.5vh), 58px);
   --hero-lead: clamp(16px, 0.4vw + 14px, 20px);
   --hero-cta: clamp(14px, 0.15vw + 13px, 16px);
   --hero-gap: clamp(20px, 2.2vw, 32px);    /* Archivo width that best matches Trade Gothic Bold Extended */
@@ -182,17 +182,17 @@ h1, h2, h3 { margin: 0; }
   font-family: "Playfair Display", Georgia, serif;
   font-weight: 500; font-stretch: normal; font-size: var(--hero-brand); line-height: .95; letter-spacing: .01em;
 }
-.hero__heading--sentence { max-width: 1150px; margin: 0 auto; font-size: var(--hero-title); line-height: 1.1; text-wrap: balance; }
+.hero__heading--sentence { max-width: 1000px; margin: 0 auto; font-size: var(--hero-title); line-height: 1.08; letter-spacing: -.005em; text-transform: none; text-wrap: balance; }
 .btn [aria-hidden] { margin-left: 8px; }
 .hero__lead {
-  max-width: 760px; margin: 4px auto 0; font-size: var(--hero-lead); line-height: 1.5; letter-spacing: .01em;
+  max-width: 700px; margin: 4px auto 0; font-size: var(--hero-lead); line-height: 1.55; letter-spacing: .01em;
   text-shadow: 0 1px 12px rgba(0,0,0,.35);
 }
-.hero__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 6px 0 4px; padding: 0; list-style: none; }
+.hero__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; margin: 0 0 8px; padding: 0; list-style: none; }
 .hero__chips li {
-  padding: 7px 14px; border: 1px solid rgba(255,255,255,.65); border-radius: 2px;
+  padding: 6px 12px; border: 1px solid rgba(255,255,255,.55); border-radius: 2px;
   background: rgba(0,0,0,.38); backdrop-filter: blur(4px);
-  font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+  font-size: 13px; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase;
 }
 .hero__buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
 .hero__buttons .btn { min-height: 52px; padding: 0 28px; border-width: 2px; font-size: var(--hero-cta); letter-spacing: .02em; }
@@ -376,7 +376,7 @@ main.wrap { padding-top: 100px; }
   .tabs a { font-size: 14px; padding: 0 7px; }
   .announcement a { font-size: 12px; }
   .hero { height: calc(100vh - 82px - 67px); }
-  .hero__chips li { font-size: 12px; padding: 6px 10px; }
+  .hero__chips li { font-size: 11px; padding: 5px 9px; letter-spacing: .06em; }
   .hero__content-wrap { padding: calc(var(--menu-h) + 16px) 20px 48px; }
   .hero__buttons { flex-direction: column; align-items: stretch; }
   .section-head h2 { font-size: 24px; }
