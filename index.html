@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Parque Comercial Lago Verde en Pance, sur de Cali: más de 40 locales con restaurantes, bares, gimnasio y panaderías frente al lago. Abierto de 5 a.m. a 11 p.m.">
+<meta name="description" content="Parque Comercial Lago Verde en Pance, sur de Cali: más de 40 locales de gastronomía, bienestar, belleza y compras frente al lago. Abierto de 5 a.m. a 11 p.m.">
 <title>Lago Verde — Parque Comercial en Pance, Cali</title>
 <!--
   Lago Verde landing page. Layout and visual design are based on the "DINE" tab of thegrounds.com.au,
@@ -283,6 +283,15 @@ main.wrap { padding-top: 100px; }
 .shop__details h3 { font-size: 30px; color: var(--c-white); text-align: center; }
 .shop__buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
+/* Encuentra de todo (store categories) */
+.categories-intro { max-width: 640px; margin: 0 0 32px; font-size: 18px; line-height: 1.55; }
+.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.cat { display: flex; flex-direction: column; gap: 12px; padding: 28px 24px; background: var(--c-bg-alt); border-radius: 2px; }
+.cat__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--c-sage-light); color: var(--c-primary); }
+.cat__icon svg { width: 22px; height: 22px; }
+.cat h3 { font-size: 16px; line-height: 1.3; }
+.cat p { margin: 0; font-size: 15px; line-height: 1.5; color: #3a3a3a; }
+
 /* Day & night (content from lagoverde.com.co) */
 .daynight-intro { max-width: 780px; margin: 0 0 40px; font-size: 18px; line-height: 1.6; }
 .moments { display: flex; flex-direction: column; gap: 110px; margin-top: 70px; }
@@ -419,6 +428,7 @@ main.wrap { padding-top: 100px; }
   .wo-grid .span-2 { grid-column: span 2; }
   .wo-card .venue__img img { height: 420px; }
   .visit__grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-links, .newsletter { flex-basis: 100%; }
   .newsletter { margin-top: 40px; }
 }
@@ -436,6 +446,11 @@ main.wrap { padding-top: 100px; }
   .wo-grid .span-2 { grid-column: auto; }
   .wo-card .venue__img img { height: 320px; }
   .visit__grid { grid-template-columns: 1fr; }
+  .cat-grid { gap: 12px; }
+  .cat { padding: 20px 16px; gap: 10px; }
+  .cat h3 { font-size: 14px; }
+  .cat p { font-size: 14px; }
+  .categories-intro { font-size: 16px; margin-bottom: 24px; }
   .visit { padding: 60px 0; margin-top: 60px; }
   .moments { gap: 70px; margin-top: 50px; }
   .moment__head { margin-bottom: 30px; }
@@ -472,7 +487,7 @@ main.wrap { padding-top: 100px; }
     </div>
   </div>
   <div class="announcement">
-    <a href="#dine">Más de 40 locales te esperan frente al lago</a>
+    <a href="#categorias">Más de 40 locales te esperan frente al lago</a>
   </div>
 </header>
 
@@ -486,7 +501,7 @@ main.wrap { padding-top: 100px; }
       <nav class="mainmenu__nav" aria-label="Principal">
         <ul>
           <li><a href="#whats-on">Agenda</a></li>
-          <li><a href="#dine">Locales</a></li>
+          <li><a href="#categorias">Locales</a></li>
           <li><a href="#dia-y-noche">Nosotros</a></li>
         </ul>
       </nav>
@@ -513,7 +528,7 @@ main.wrap { padding-top: 100px; }
             <p class="hero__lead">Parque Comercial en Pance, sur de Cali</p>
           </div>
           <div class="hero__buttons">
-            <a class="btn btn--green" href="#dine">Ver locales</a>
+            <a class="btn btn--green" href="#categorias">Ver locales</a>
             <a class="btn btn--ghost" href="#visita">Cómo llegar <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -525,7 +540,7 @@ main.wrap { padding-top: 100px; }
         <div class="hero__content">
           <div class="hero__text">
             <h2 class="hero__heading hero__heading--sentence display">Bienestar, sabor y naturaleza en un solo lugar</h2>
-            <p class="hero__lead">Lago Verde reúne <strong>más de 40 locales</strong>: restaurantes, panaderías, gimnasio, bares y terrazas frente al lago, en Pance, al sur de Cali. Abierto de 5&nbsp;a.m. a 11&nbsp;p.m.</p>
+            <p class="hero__lead">Lago Verde reúne <strong>más de 40 locales</strong> de gastronomía, bienestar, belleza y compras frente al lago, en Pance, al sur de Cali. Abierto de 5&nbsp;a.m. a 11&nbsp;p.m.</p>
           </div>
           <ul class="hero__chips" aria-label="Servicios">
             <li>Petfriendly</li>
@@ -533,7 +548,7 @@ main.wrap { padding-top: 100px; }
             <li>Zona de juegos gratis</li>
           </ul>
           <div class="hero__buttons">
-            <a class="btn btn--green" href="#dine">Ver los locales</a>
+            <a class="btn btn--green" href="#categorias">Ver los locales</a>
           </div>
         </div>
       </div>
@@ -548,6 +563,59 @@ main.wrap { padding-top: 100px; }
 <!-- ======================= MAIN ======================= -->
 <main class="wrap">
   <div class="container">
+
+    <!-- Encuentra de todo: categorías de locales -->
+    <section id="categorias">
+      <div class="section-head reveal">
+        <h2 class="display">Encuentra de todo</h2>
+        <a class="link link--lg" href="#visita">Cómo llegar</a>
+      </div>
+      <p class="categories-intro">Más de 40 locales en un solo lugar, frente al lago.</p>
+      <div class="cat-grid">
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-1.7 1-2.5 3-2.5 5.5S15.5 12 17 12v9"/></svg></span>
+          <h3 class="display">Restaurantes y cafés</h3>
+          <p>Cocina local, gourmet y saludable.</p>
+        </article>
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11a3.5 3.5 0 0 1 1.5-6.5h11A3.5 3.5 0 0 1 19 11v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z"/><path d="M10 4.5V8M14 4.5V8"/></svg></span>
+          <h3 class="display">Panaderías</h3>
+          <p>Café recién hecho y pandebono caliente.</p>
+        </article>
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14l-7 8Z"/><path d="M12 12v8M8 20h8M8.5 8h7"/></svg></span>
+          <h3 class="display">Bares y terrazas</h3>
+          <p>Cervecerías y coctelería frente al lago.</p>
+        </article>
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span>
+          <h3 class="display">Gimnasio</h3>
+          <p>Entrena desde las 5:00 a.m.</p>
+        </article>
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8Z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7L19 20l-.7-1.8-1.8-.7 1.8-.7Z"/></svg></span>
+          <h3 class="display">Belleza y estética</h3>
+          <p>Estética, barbería y servicios de belleza.</p>
+        </article>
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="2"/><path d="M12 6c0-2 1.1-3 2.2-2.8 1.3.2 1.5 1.9.3 3M14 8c2 0 3 1.1 2.8 2.2-.2 1.3-1.9 1.5-3 .3M12 10c0 2-1.1 3-2.2 2.8-1.3-.2-1.5-1.9-.3-3M10 8c-2 0-3-1.1-2.8-2.2.2-1.3 1.9-1.5 3-.3"/><path d="M12 10.5V21M12 17.5c-2.4 0-3.9-1.4-4.4-3.4 2.4 0 3.9 1.4 4.4 3.4ZM12 16c2.4 0 3.9-1.4 4.4-3.4-2.4 0-3.9 1.4-4.4 3.4Z"/></svg></span>
+          <h3 class="display">Floristería</h3>
+          <p>Flores y arreglos.</p>
+        </article>
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3h4M10.5 3v4.5C9 9 8.5 10.5 8.5 12v8a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-8c0-1.5-.5-3-2-4.5V3"/><path d="M8.5 14h7"/></svg></span>
+          <h3 class="display">Licores</h3>
+          <p>Vinos y licores.</p>
+        </article>
+        <article class="cat">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8c2.7 1.8 4.2 5 4.2 8.6 0 1.6-.3 3-.8 4.2H8.6c-.5-1.2-.8-2.6-.8-4.2 0-3.6 1.5-6.8 4.2-8.6Z"/><circle cx="12" cy="9.6" r="1.6"/><path d="M8.3 12.8 5.9 15l.6 3 2.4-2.4M15.7 12.8l2.4 2.2-.6 3-2.4-2.4M10.4 18.2c.3 1.3.8 2.2 1.6 3 .8-.8 1.3-1.7 1.6-3"/></svg></span>
+          <h3 class="display">Niños y mascotas</h3>
+          <p>La Nave Espacial y espacios petfriendly.</p>
+        </article>
+      </div>
+    </section>
+
+    <hr class="divider">
 
     <!-- De día y de noche (contenido de lagoverde.com.co) -->
     <section id="dia-y-noche">
