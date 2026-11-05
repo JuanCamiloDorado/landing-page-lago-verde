@@ -18,6 +18,7 @@ Abre `index.html` en el navegador. No necesita instalación ni build.
 - **Tipografía:** Trade Gothic LT Std Bold Extended (títulos y botones), TradeGothic LT Regular (textos) y Germaine (pestañas). Son fuentes comerciales: si están instaladas se usan; si no, se cargan los sustitutos gratuitos Archivo y Marcellus de Google Fonts.
 - **Layout:** contenedor de 1366 px, hero a pantalla completa con carrusel, y las secciones Dine + Drink, What's On, Events (tarjetas en arco), Shop (video al pasar el mouse) y footer con newsletter.
 - **Contenido de Lago Verde:** la sección "De día y de noche" (horario, mascotas, zona de niños y planes por momento del día) sale del artículo [Qué hacer en Cali: disfruta Lago Verde de día y de noche](https://lagoverde.com.co/que-hacer-en-cali-disfruta-lago-verde-de-dia-y-de-noche/).
+- **Opiniones:** la sección "Lo que dicen de Lago Verde" muestra la nota de Google (4,6 con 319 opiniones al 5 de noviembre de 2026) y una selección de 8 reseñas copiadas a mano de Google Maps, en un carrusel con "Leer más". Es contenido estático: hay que actualizar la nota, el total y las reseñas de vez en cuando.
 - **Interacción:** carrusel automático de 6 s, animaciones de entrada al hacer scroll, menú móvil y formulario de newsletter de demostración (no envía datos).
 
 ## Cómo se obtuvo el diseño

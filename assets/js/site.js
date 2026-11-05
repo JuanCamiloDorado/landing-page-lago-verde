@@ -52,6 +52,44 @@
     document.fonts?.ready.then(equalize);        // web fonts change line wrapping
   });
 
+  // Opiniones: arrow buttons for the review carousel, and "Leer más" on reviews that overflow.
+  document.querySelectorAll('[data-reviews]').forEach((box) => {
+    const track = box.querySelector('.reviews__track');
+    const buttons = [...box.querySelectorAll('.reviews__btn')];
+    const smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    const step = () => {
+      const card = track.querySelector('.review');
+      return card ? card.offsetWidth + parseFloat(getComputedStyle(track).columnGap || 0) : track.clientWidth;
+    };
+    const updateButtons = () => {
+      const [prev, next] = buttons;
+      prev.disabled = track.scrollLeft < 4;
+      next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 4;
+    };
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      track.scrollBy({ left: step() * Number(b.dataset.dir), behavior: smooth });
+    }));
+    track.addEventListener('scroll', updateButtons, { passive: true });
+
+    const clamp = () => {
+      box.querySelectorAll('.review:not(.is-open)').forEach((r) => {
+        const text = r.querySelector('.review__text');
+        const over = text.scrollHeight > text.clientHeight + 2;
+        text.classList.toggle('is-clamped', over);
+        r.querySelector('.review__more').hidden = !over;
+      });
+      updateButtons();
+    };
+    box.querySelectorAll('.review__more').forEach((b) => b.addEventListener('click', () => {
+      const open = b.closest('.review').classList.toggle('is-open');
+      b.setAttribute('aria-expanded', open);
+      b.textContent = open ? 'Leer menos' : 'Leer más';
+      if (!open) clamp();
+    }));
+    new ResizeObserver(clamp).observe(track); // also runs once on load
+    document.fonts?.ready.then(clamp);
+  });
+
   // Demo newsletter form (no network request)
   document.getElementById('nl-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
