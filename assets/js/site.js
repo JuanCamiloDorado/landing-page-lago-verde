@@ -219,6 +219,36 @@
     sync();
   });
 
+  // "Copiar" buttons (address in "Cómo llegar"): copy data-copy to the clipboard and confirm for 2 s.
+  // Falls back to a hidden textarea where the Clipboard API is missing or refuses (plain http on a LAN IP,
+  // embedded frames without clipboard permission).
+  const copyWithTextarea = (text) => new Promise((resolve, reject) => {
+    const ta = Object.assign(document.createElement('textarea'), { value: text, readOnly: true });
+    ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+    document.body.append(ta); ta.select();
+    const ok = document.execCommand('copy'); ta.remove();
+    ok ? resolve() : reject(new Error('copy failed'));
+  });
+  const copyText = (text) => (navigator.clipboard && window.isSecureContext
+    ? navigator.clipboard.writeText(text).catch(() => copyWithTextarea(text))
+    : copyWithTextarea(text));
+  document.querySelectorAll('[data-copy]').forEach((btn) => {
+    const label = btn.querySelector('[data-copy-label]');
+    const status = btn.parentElement.querySelector('[data-copy-status]');
+    let timer;
+    const show = (copied, text, said) => {
+      btn.classList.toggle('is-copied', copied); label.textContent = text;
+      if (status) status.textContent = said;
+    };
+    btn.addEventListener('click', () => {
+      clearTimeout(timer);
+      copyText(btn.dataset.copy)
+        .then(() => show(true, 'Copiada', 'Dirección copiada'))
+        .catch(() => show(false, 'No se pudo copiar', 'No se pudo copiar la dirección'))
+        .finally(() => { timer = setTimeout(() => show(false, 'Copiar', ''), 2000); });
+    });
+  });
+
   // Demo newsletter form (no network request)
   document.getElementById('nl-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
