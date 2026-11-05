@@ -1223,11 +1223,6 @@ main.wrap.venue-page { padding-top: 28px; }
 .menu-section__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; padding-bottom: 6px; }
 .menu-section__head h3 { flex-basis: 100%; font-family: "Playfair Display", Georgia, serif; font-weight: 500; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.1; color: #000; }
 .menu-section__head p { margin: 0; font-size: 16px; line-height: 1.5; color: var(--c-grey-dark); }
-.menu-section__head .menu-section__flag {
-  display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; border-radius: 999px;
-  background: #F6EBCB; color: #6B5310; font-size: 14px;
-}
-.menu-section__flag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #C99A1E; }
 
 .dishes { margin: 0; padding: 0; list-style: none; }
 .dish {
