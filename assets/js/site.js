@@ -17,10 +17,18 @@
   const topbar = document.querySelector('.topbar');
   const heroEl = document.querySelector('.hero');
   const stickAt = () => heroEl.getBoundingClientRect().top + window.scrollY + 100;
+  // Phones: the floating bar's hamburger opens the tabs as a dropdown
+  const barToggle = topbar.querySelector('.topbar__toggle');
+  const setBarOpen = open => { topbar.classList.toggle('is-open', open); barToggle.setAttribute('aria-expanded', open); };
+  barToggle.addEventListener('click', () => setBarOpen(!topbar.classList.contains('is-open')));
+  topbar.querySelectorAll('.tabs a').forEach(a => a.addEventListener('click', () => setBarOpen(false)));
   let stuck = false;
   const onScroll = () => {
     const next = window.scrollY > stickAt();
-    if (next !== stuck) { stuck = next; topbar.classList.toggle('is-stuck', stuck); }
+    if (next !== stuck) {
+      stuck = next; topbar.classList.toggle('is-stuck', stuck);
+      if (!stuck) setBarOpen(false);
+    }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -257,7 +265,7 @@
     e.target.querySelector('.nl-thanks').style.display = 'block';
   });
 
-  // Category pages (comer.html, beber.html, cuidarte.html): live search over the venue cards.
+  // Category pages (gastronomia.html, bienestar.html, tiendas.html): live search over the venue cards.
   // Matches every word typed against the card text plus its data-tags, ignoring accents and case.
   const norm = (t) => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   document.querySelectorAll('[data-directory]').forEach((dir) => {

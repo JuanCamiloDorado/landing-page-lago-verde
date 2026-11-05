@@ -34,14 +34,21 @@
       <a class="topbar__brand" href="index.html" aria-label="Lago Verde, inicio"><img src="assets/logo-lago-verde.png" alt="" width="768" height="308"></a>
       <ul class="tabs" aria-label="Secciones">
         <li><a href="index.html" class="is-active" aria-current="page">Inicio</a></li>
-        <li><a href="comer.html">Comer</a></li>
-        <li><a href="beber.html">Beber</a></li>
-        <li><a href="cuidarte.html">Cuidarte</a></li>
+        <li><a href="gastronomia.html">Gastronomía</a></li>
+        <li><a href="bienestar.html">Bienestar</a></li>
+        <li><a href="tiendas.html">Tiendas</a></li>
+        <li class="tabs__plan"><a href="#whats-on">Eventos</a></li>
+        <li class="tabs__plan"><a href="#dia-y-noche">Qué hacer</a></li>
       </ul>
       <div class="utility">
-        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.47 6.47 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"/></svg>Buscar</a>
-        <a href="#">Contáctanos</a>
+        <a class="utility__text" href="#whats-on">Eventos</a>
+        <a class="utility__text" href="#dia-y-noche">Qué hacer</a>
+        <a href="#" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></a>
+        <a href="#como-llegar" aria-label="Cómo llegar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>
       </div>
+      <button class="topbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
   </div>
   </div>
@@ -59,12 +66,18 @@
       </div>
       <nav class="mainmenu__nav" aria-label="Principal">
         <ul>
+          <li class="mainmenu__cat"><a href="index.html" aria-current="page">Inicio</a></li>
+          <li class="mainmenu__cat"><a href="gastronomia.html">Gastronomía</a></li>
+          <li class="mainmenu__cat"><a href="bienestar.html">Bienestar</a></li>
+          <li class="mainmenu__cat"><a href="tiendas.html">Tiendas</a></li>
           <li><a href="#whats-on">Eventos</a></li>
-          <li><a href="#categorias">Locales</a></li>
-          <li><a href="#dia-y-noche">Nosotros</a></li>
+          <li><a href="#dia-y-noche">Qué hacer</a></li>
         </ul>
       </nav>
-      <div class="mainmenu__cta"><a href="#" class="btn btn--green">Reservar mesa</a></div>
+      <div class="mainmenu__icons">
+        <a href="#" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></a>
+        <a href="#como-llegar" aria-label="Cómo llegar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>
+      </div>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainmenu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -131,7 +144,7 @@
       </div>
       <p class="categories-intro">Más de 40 locales: restaurantes, panaderías, bares, gimnasio, estética, floristería y licores reunidos frente al lago, en Pance, al sur de Cali.</p>
       <div class="bento">
-        <a class="bento__card bento__card--photo bento__card--big" style="grid-area:rest" href="#dine">
+        <a class="bento__card bento__card--photo bento__card--big" style="grid-area:rest" href="gastronomia.html">
           <img src="assets/locales/palomulata/foto.webp" alt="" loading="lazy" style="object-position: center 12%">
           <div class="bento__body">
             <span class="bento__chip"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M15 10L4 21.001m14-18l-3 3c-.545.545-.818.818-.964 1.112a2 2 0 0 0 0 1.776c.146.294.419.567.964 1.112s.818.818 1.112.964a2 2 0 0 0 1.776 0c.294-.146.567-.419 1.112-.964l3-3m-2-2.002l-3 3"/><path d="M8.845 9.846c-1.365 1.365-3.237 1.706-4.944 0c-1.706-1.707-2.6-4.814-1.235-6.18c1.365-1.364 4.472-.47 6.179 1.236c1.706 1.707 1.365 3.579 0 4.944Zm0 0L20 21"/></g></svg></span>
@@ -140,7 +153,7 @@
           </div>
           <span class="bento__arrow" aria-hidden="true">→</span>
         </a>
-        <a class="bento__card bento__card--photo" style="grid-area:pan" href="#dia-y-noche">
+        <a class="bento__card bento__card--photo" style="grid-area:pan" href="gastronomia.html">
           <img src="assets/categorias/panaderia-frente-al-lago.jpg" alt="" loading="lazy">
           <div class="bento__body">
             <span class="bento__chip"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.504 10.497c-.456.46-.779 1.33-1.33 3.33c-.117.423-.203.86-.163 1.297c.06.648.28 1.05.72 1.38c.468.353 1.077.44 1.664.44h1.52c1.047 0 2.146-.207 2.848-.978c.798-.877 1.005-1.85.756-2.493m.5-9.92l3.35-1.326c1.025-.405 2.257-.288 3.003.516c.363.39.594.787.665 1.306v2.063c0 1.204-.52 2.393-1.563 3.014c-.599.355-1.178.605-1.945.875M4.005 8.017c1.206-2.15 2.076-3.03 4.01-3.968c.442-.238.81-.374 1.159-.398c1.393-.095 2.141 1.546 2.708 2.808l1.008 2.243c.091.204.162.417.196.637c.157.998.003 1.499-.56 2.15l-.917.907c-.39.386-.806.774-1.332.936q-.222.068-.432.077c-.937.036-1.817-.468-2.702-.777c-1.132-.394-1.97-1.03-3.138-2.135c-.622-.985-.592-1.529 0-2.48m13.033-.472c1.177.204 1.838.323 3.007.498c.458.067.8.005 1.185-.253c.594-.399.925-1.16.693-1.836c-.227-.663-.78-1.19-1.878-1.896c-1.153-.801-1.811-1.135-3.008-1.495M2.502 17.01c.094 1.388.578 2.273 2.005 3.985c.646.661 1.117.933 1.742.999c.49.051.967-.187 1.274-.57c.378-.47.531-.857.493-1.425l-.501-2.989"/></svg></span>
@@ -149,7 +162,7 @@
           </div>
           <span class="bento__arrow" aria-hidden="true">→</span>
         </a>
-        <a class="bento__card bento__card--photo" style="grid-area:bar" href="#dia-y-noche">
+        <a class="bento__card bento__card--photo" style="grid-area:bar" href="gastronomia.html">
           <img src="assets/locales/laromanezca/foto.webp" alt="" loading="lazy">
           <div class="bento__body">
             <span class="bento__chip"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m11.996 13l4.437-4.993C18.345 5.855 19.3 4.78 18.91 3.89C18.518 3 17.09 3 14.23 3H9.76c-2.858 0-4.287 0-4.678.89c-.392.89.564 1.965 2.476 4.117zm0 0v8m-3.5 0h7"/></svg></span>
@@ -158,7 +171,7 @@
           </div>
           <span class="bento__arrow" aria-hidden="true">→</span>
         </a>
-        <a class="bento__card bento__card--photo" style="grid-area:gym" href="#dia-y-noche">
+        <a class="bento__card bento__card--photo" style="grid-area:gym" href="bienestar.html">
           <img src="assets/categorias/gimnasio-the-one.jpg" alt="" loading="lazy" style="object-position: center 35%">
           <div class="bento__body">
             <span class="bento__chip"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.734 13.732s.906-1.222 1.5-1.5c1.795-.84 2.16-1.206 3-3.001c.279-.595 1.5-1.5 1.5-1.5m-3.5 8.502s1.222-.906 1.5-1.5c.84-1.796 1.206-2.16 3-3.001c.595-.279 1.5-1.5 1.5-1.5"/><path d="M14.431 2.892a1.3 1.3 0 0 1 1.839-.003l4.811 4.798a1.3 1.3 0 0 1 .003 1.84l-1.528 1.533a1.3 1.3 0 0 1-1.839.003l-4.812-4.798a1.3 1.3 0 0 1-.002-1.839zM4.414 12.902a1.3 1.3 0 0 1 1.838-.003l4.812 4.798a1.3 1.3 0 0 1 .003 1.84L9.538 21.07a1.3 1.3 0 0 1-1.838.003l-4.812-4.798a1.3 1.3 0 0 1-.003-1.839z"/><path stroke-linecap="round" stroke-linejoin="round" d="M17.938 3.453c1.882-2.468 5.202.387 2.605 2.576M3.378 17.977c-2.38 1.992.62 5.182 2.69 2.489"/></g></svg></span>
@@ -176,30 +189,33 @@
           </div>
           <span class="bento__arrow" aria-hidden="true">→</span>
         </a>
-        <article class="bento__card bento__card--photo" style="grid-area:flo">
+        <a class="bento__card bento__card--photo" style="grid-area:flo" href="tiendas.html">
           <img src="assets/categorias/floristeria.jpg" alt="" loading="lazy" style="object-position: center 40%">
           <div class="bento__body">
             <span class="bento__chip"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"><path d="M14.5 12.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0Z"/><path d="M12 3c2.21 0 3.998 1.917 3.998 4.127Q16.48 7 17 7a4 4 0 0 1 1.712 7.616A4 4 0 1 1 12 18.938a4 4 0 1 1-6.712-4.322a4 4 0 0 1 2.714-7.49C8.002 4.918 9.79 3 12 3Z"/></g></svg></span>
             <h3 class="display">Floristería</h3>
             <p>Flores y arreglos.</p>
           </div>
-        </article>
-        <article class="bento__card bento__card--photo" style="grid-area:bea">
+          <span class="bento__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="bento__card bento__card--photo" style="grid-area:bea" href="bienestar.html">
           <img src="assets/categorias/belleza.jpg" alt="" loading="lazy" style="object-position: center 60%">
           <div class="bento__body">
             <span class="bento__chip"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.992 6a3 3 0 1 0 6 0a3 3 0 0 0-6 0m6 2l12 11m-12-3l4-4m-10 6a3 3 0 1 0 6 0a3 3 0 0 0-6 0m12.5-8.5l5.5-5.5"/></svg></span>
             <h3 class="display">Belleza y estética</h3>
             <p>Estética, barbería y servicios de belleza.</p>
           </div>
-        </article>
-        <article class="bento__card bento__card--photo" style="grid-area:lic">
+          <span class="bento__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="bento__card bento__card--photo" style="grid-area:lic" href="tiendas.html">
           <img src="assets/categorias/licores.jpg" alt="" loading="lazy">
           <div class="bento__body">
             <span class="bento__chip"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M14 6.485V4c0-.943 0-1.414-.293-1.707S12.943 2 12 2s-1.414 0-1.707.293S10 3.057 10 4v2.485c0 .322-.16.622-.429.8A5.78 5.78 0 0 0 7 12.092V17c0 1.87 0 2.804.402 3.5A3 3 0 0 0 8.5 21.598C9.196 22 10.13 22 12 22s2.804 0 3.5-.402a3 3 0 0 0 1.098-1.098C17 19.804 17 18.87 17 17v-4.91c0-1.93-.965-3.733-2.571-4.804A.96.96 0 0 1 14 6.485"/><path d="M17 13h-2.5c-.935 0-1.402 0-1.75.201a1.5 1.5 0 0 0-.549.549C12 14.098 12 14.565 12 15.5s0 1.402.201 1.75a1.5 1.5 0 0 0 .549.549c.348.201.815.201 1.75.201H17"/></g></svg></span>
             <h3 class="display">Licores</h3>
             <p>Vinos y licores.</p>
           </div>
-        </article>
+          <span class="bento__arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
 
@@ -220,7 +236,7 @@
             <p>Aire fresco, café recién hecho y espacio para moverte: así arranca la mañana frente al lago.</p>
           </header>
           <div class="activities">
-            <a class="activity" href="cuidarte.html">
+            <a class="activity" href="bienestar.html">
               <img class="activity__img" loading="lazy" src="assets/momentos/manana/gym.webp" alt="Mujer descansando tras entrenar en The One Wellness Club" style="object-position: center 20%">
               <div class="activity__card">
                 <span class="activity__arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6"/></svg></span>
@@ -228,7 +244,7 @@
                 <p>Activa tu día en un lugar que solo transmite paz.</p>
               </div>
             </a>
-            <a class="activity" href="comer.html">
+            <a class="activity" href="gastronomia.html">
               <img class="activity__img" loading="lazy" src="assets/momentos/manana/desayuno.webp" alt="Mesa de desayuno vista desde arriba con huevos fritos, omelette, huevos revueltos y pan tostado" style="object-position: center 10%">
               <div class="activity__card">
                 <span class="activity__arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6"/></svg></span>
@@ -253,7 +269,7 @@
             <p>Una pausa a mitad del día para comer bien, caminar junto al agua y consentirte.</p>
           </header>
           <div class="activities">
-            <a class="activity" href="comer.html">
+            <a class="activity" href="gastronomia.html">
               <img class="activity__img" loading="lazy" src="assets/momentos/tarde/almuerzo.webp" alt="Arroz con camarones en cazuela negra, con patacones y lechuga sobre una tabla de madera" style="object-position: center 55%">
               <div class="activity__card">
                 <span class="activity__arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6"/></svg></span>
@@ -268,7 +284,7 @@
                 <p>Observa el lago, alimenta los peces o simplemente déjate llevar.</p>
               </div>
             </div>
-            <a class="activity" href="cuidarte.html">
+            <a class="activity" href="bienestar.html">
               <img class="activity__img" loading="lazy" src="assets/momentos/tarde/retoque.webp" alt="Especialista de Euroestética aplicando un tratamiento láser facial" style="object-position: center bottom">
               <div class="activity__card">
                 <span class="activity__arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6"/></svg></span>
@@ -292,7 +308,7 @@
             <p>Cuando cae la tarde sobre Pance, el lago se ilumina y empieza el plan con amigos.</p>
           </header>
           <div class="activities">
-            <a class="activity" href="beber.html">
+            <a class="activity" href="gastronomia.html">
               <img class="activity__img" loading="lazy" src="assets/momentos/noche/bares.webp" alt="Pareja brindando con vino en Múgari, con el letrero iluminado del restaurante al fondo" style="object-position: center 45%">
               <div class="activity__card">
                 <span class="activity__arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6"/></svg></span>
@@ -300,7 +316,7 @@
                 <p>Una cena con buenos brindis frente al lago.</p>
               </div>
             </a>
-            <a class="activity" href="beber.html">
+            <a class="activity" href="gastronomia.html">
               <img class="activity__img" loading="lazy" src="assets/momentos/noche/terrazas.webp" alt="Terraza de Lago Verde de noche, con sombrillas y plantas cubiertas de luces junto al letrero del parque" style="object-position: center 55%">
               <div class="activity__card">
                 <span class="activity__arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6"/></svg></span>
@@ -308,7 +324,7 @@
                 <p>Coctelería artesanal y cerveza local bajo las luces.</p>
               </div>
             </a>
-            <a class="activity" href="beber.html">
+            <a class="activity" href="gastronomia.html">
               <img class="activity__img" loading="lazy" src="assets/momentos/noche/ambiente.webp" alt="Atardecer sobre el lago de Lago Verde con sus fuentes iluminadas y las terrazas al fondo" style="object-position: center 55%">
               <div class="activity__card">
                 <span class="activity__arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.5 12H5m8 6s6-4.419 6-6s-6-6-6-6"/></svg></span>
@@ -541,7 +557,7 @@
     <section id="dine">
       <div class="section-head reveal">
         <h2 class="display">Comer y beber</h2>
-        <a class="link link--lg" href="comer.html">Ver todo</a>
+        <a class="link link--lg" href="gastronomia.html">Ver todo</a>
       </div>
       <div class="grid-3">
         <article class="resto">
