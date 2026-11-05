@@ -313,6 +313,58 @@ main.wrap { padding-top: 100px; }
 .directory__search input:focus { outline: 2px solid var(--c-primary); outline-offset: 2px; border-color: var(--c-primary); }
 .directory__count { margin: 0; font-size: 15px; letter-spacing: .03em; text-transform: uppercase; color: var(--c-grey-dark); }
 .directory__grid { row-gap: 70px; }
+/* Finder (gastronomia.html): eyebrow, search field and outlined category pills, sitting straight on the page (no card).
+   Each pill carries how many places its category has (matching the search). The global count stays for screen readers. */
+.directory__finder {
+  /* One centered column as wide as the row of pills (never wider than the page), so the search matches it */
+  display: grid; grid-template-columns: minmax(0, max-content); justify-content: center; gap: 18px;
+  margin: 0 0 64px;
+}
+.directory__eyebrow {
+  margin: 0 0 -2px; font-size: 13px; font-weight: 700; line-height: 1.2; letter-spacing: .14em;
+  text-align: center; text-transform: uppercase; color: var(--c-olive);
+}
+.directory__finder .directory__search { flex: none; width: 100%; max-width: none; }
+.directory__finder .directory__search svg { left: 24px; color: var(--c-grey-dark); }
+.directory__finder .directory__search input { height: 60px; padding-left: 58px; border: 1px solid var(--c-line); border-radius: 14px; background: var(--c-white); font-size: 17px; }
+.directory__finder .directory__search input::placeholder { color: var(--c-grey); }
+.directory__finder .directory__search input:focus { outline: 2px solid var(--c-primary); outline-offset: 2px; border-color: transparent; }
+.directory__finder .directory__count { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Category pills: outlined; the chosen one fills brand green; categories with no venues yet look dimmed */
+.directory__filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.directory__filter {
+  flex: none; display: inline-flex; align-items: center; gap: 10px;
+  padding: 9px 10px 9px 18px; border: 1px solid #DCDBCC; border-radius: 999px; background: var(--c-white);
+  font: inherit; font-size: 15px; font-weight: 600; line-height: 1.2; white-space: nowrap; color: var(--c-text); cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.directory__filter-icon { display: grid; place-items: center; }
+.directory__filter-icon svg { width: 20px; height: 20px; }
+.directory__filter-count {
+  display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 8px; border-radius: 999px;
+  background: var(--c-bg-alt); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--c-grey-dark);
+  transition: background-color .2s ease, color .2s ease;
+}
+.directory__filter.is-empty { color: var(--c-grey); }
+.directory__filter.is-empty .directory__filter-count { color: var(--c-grey); }
+.directory__filter:hover { border-color: var(--c-primary); }
+.directory__filter:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 2px; }
+.directory__filter[aria-pressed="true"] { border-color: var(--c-primary); background: var(--c-primary); color: var(--c-white); }
+.directory__filter[aria-pressed="true"] .directory__filter-count { background: rgba(255, 255, 255, .16); color: var(--c-white); }
+@media (prefers-reduced-motion: reduce) { .directory__filter, .directory__filter-count { transition: none; } }
+.directory__section + .directory__section { margin-top: 90px; }
+.directory__section[hidden], .directory__soon[hidden] { display: none; }
+/* Section title row: name on the left, how many places on the right */
+.directory__head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  margin: 0 0 32px; padding-bottom: 16px; border-bottom: 1px solid var(--c-line);
+}
+.directory__head-count { flex: none; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--c-grey-dark); }
+.directory__heading {
+  margin: 0;
+  font-size: clamp(20px, 1.6vw, 26px); font-stretch: var(--display-stretch); text-transform: uppercase; letter-spacing: .02em;
+}
 .directory__grid > [hidden] { display: none; }
 .directory__empty, .directory__soon {
   margin: 0; padding: 60px 24px; border: 1px dashed var(--c-line); border-radius: 16px;
@@ -982,6 +1034,17 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
   .hero__buttons { flex-direction: column; align-items: stretch; }
   .section-head h2 { font-size: 24px; }
   .grid-3 { grid-template-columns: 1fr; }
+  .directory__finder { gap: 16px; margin-bottom: 44px; }
+  .directory__eyebrow { font-size: 12px; }
+  .directory__finder .directory__search input { height: 54px; font-size: 16px; }
+  /* Pills scroll sideways in one row, edge to edge inside the panel */
+  .directory__filters { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; margin: 0 -20px; padding: 0 20px; scrollbar-width: none; }
+  .directory__filters::-webkit-scrollbar { display: none; }
+  .directory__filter { padding: 8px 8px 8px 14px; font-size: 14px; }
+  .directory__filter-count { min-width: 24px; height: 24px; font-size: 12px; }
+  .directory__head-count { font-size: 12px; }
+  .directory__filter-icon svg { width: 18px; height: 18px; }
+  .directory__section + .directory__section { margin-top: 60px; }
   .bento {
     gap: 12px; grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 240px 190px 190px 190px auto;
