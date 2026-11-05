@@ -63,7 +63,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 82px; } /* anchors land below the sticky header */
 body {
   margin: 0; background: var(--c-bg); color: var(--c-text);
   font-family: var(--f-text); font-stretch: 92%; font-size: 1rem; line-height: 1.5;
@@ -105,6 +105,10 @@ h1, h2, h3 { margin: 0; }
 .link--lg { font-size: 20px; line-height: 28px; color: var(--c-grey-dark); }
 .link--md { font-size: 17px; line-height: 24px; }
 .link--green { color: var(--c-primary); }
+
+/* ===== Header: sticky (tab bar + announcement follow the scroll) ===== */
+.site-header { position: sticky; top: 0; z-index: 50; transition: box-shadow .25s ease; }
+.site-header.is-scrolled { box-shadow: 0 2px 12px rgba(0,0,0,.18); }
 
 /* ===== Header: tab bar ===== */
 .topbar { background: var(--c-bg); position: relative; z-index: 20; }
@@ -410,7 +414,7 @@ main.wrap { padding-top: 100px; }
 <body>
 
 <!-- ======================= HEADER ======================= -->
-<header>
+<header class="site-header">
   <div class="topbar wrap">
     <div class="container">
       <ul class="tabs" aria-label="Secciones">
@@ -803,6 +807,12 @@ main.wrap { padding-top: 100px; }
   hero.addEventListener('focusout', (e) => { if (!hero.contains(e.relatedTarget)) resume(); });
   dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
   if (slides.length) show(0);
+
+  // Sticky header: add a shadow once the page has scrolled
+  const header = document.querySelector('.site-header');
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 0);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   // Mobile menu toggle
   const menu = document.getElementById('mainmenu');
