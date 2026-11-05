@@ -344,12 +344,44 @@ main.wrap { padding-top: 100px; }
 
 /* Encuentra de todo (store categories) */
 .categories-intro { max-width: 760px; margin: 0 0 32px; font-size: 18px; line-height: 1.55; }
-.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.cat { display: flex; flex-direction: column; gap: 12px; padding: 28px 24px; background: var(--c-bg-alt); border-radius: 2px; }
-.cat__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--c-sage-light); color: var(--c-primary); }
-.cat__icon svg { width: 22px; height: 22px; }
-.cat h3 { font-size: 16px; line-height: 1.3; }
-.cat p { margin: 0; font-size: 15px; line-height: 1.5; color: #3a3a3a; }
+.bento {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 210px 210px minmax(170px, auto);
+  grid-template-areas:
+    "rest rest pan bar"
+    "rest rest pan gym"
+    "kids flo  lic bea";
+}
+.bento__card { position: relative; border-radius: 16px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.bento__card--photo { min-height: 190px; display: flex; align-items: flex-end; color: var(--c-white); isolation: isolate; background: #2b2b2b; }
+.bento__card--photo img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.bento__card--photo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.74) 100%); }
+.bento__body { display: flex; flex-direction: column; gap: 8px; padding: 22px; }
+.bento__chip { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.94); color: var(--c-primary); }
+.bento__chip svg { width: 20px; height: 20px; }
+.bento__card--photo h3 { font-size: 18px; line-height: 1.25; color: var(--c-white); }
+.bento__card--big h3 { font-size: 28px; }
+.bento__card--photo p { margin: 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.88); }
+.bento__card--big p { font-size: 17px; }
+.bento__arrow {
+  position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 40px; height: 40px;
+  border-radius: 50%; background: rgba(255,255,255,.2); backdrop-filter: blur(6px); color: var(--c-white); font-size: 18px;
+  opacity: 0; transform: translate(-6px, 6px); transition: opacity .3s ease, transform .3s ease;
+}
+a.bento__card:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(18,18,18,.18); }
+a.bento__card:hover img { transform: scale(1.06); }
+a.bento__card:hover .bento__arrow, a.bento__card:focus-visible .bento__arrow { opacity: 1; transform: none; }
+a.bento__card:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 3px; }
+.bento__tile { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; padding: 22px; background: var(--c-white); border: 1px solid #E6E3D6; }
+.bento__icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--c-primary); color: var(--c-white); }
+.bento__icon svg { width: 26px; height: 26px; }
+.bento__tile h3 { margin-bottom: 6px; font-size: 16px; line-height: 1.3; }
+.bento__tile p { margin: 0; font-size: 14px; line-height: 1.5; color: #4a4a4a; }
+@media (prefers-reduced-motion: reduce) {
+  .bento__card, .bento__card--photo img, .bento__arrow { transition: none; }
+  a.bento__card:hover, a.bento__card:hover img { transform: none; }
+}
 
 /* Day & night (content from lagoverde.com.co) */
 .daynight-intro { max-width: 780px; margin: 0 0 40px; font-size: 18px; line-height: 1.6; }
@@ -482,7 +514,11 @@ main.wrap { padding-top: 100px; }
   .wo-grid .span-2 { grid-column: span 2; }
   .wo-card .venue__img img { height: 420px; }
   .visit__grid { grid-template-columns: repeat(2, 1fr); }
-  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 180px 180px 200px minmax(190px, auto);
+    grid-template-areas: "rest rest pan" "rest rest pan" "bar gym kids" "flo lic bea";
+  }
   .footer-links, .newsletter { flex-basis: 100%; }
   .newsletter { margin-top: 40px; }
 }
@@ -506,10 +542,22 @@ main.wrap { padding-top: 100px; }
   .wo-grid .span-2 { grid-column: auto; }
   .wo-card .venue__img img { height: 320px; }
   .visit__grid { grid-template-columns: 1fr; }
-  .cat-grid { gap: 12px; }
-  .cat { padding: 20px 16px; gap: 10px; }
-  .cat h3 { font-size: 14px; }
-  .cat p { font-size: 14px; }
+  .bento {
+    gap: 12px; grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 240px 190px 190px 190px auto;
+    grid-template-areas: "rest rest" "pan bar" "gym kids" "flo lic" "bea bea";
+  }
+  .bento__body { padding: 16px; gap: 6px; }
+  .bento__card--photo h3, .bento__card--big h3 { font-size: 15px; }
+  .bento__card--photo p { font-size: 13px; }
+  .bento__card--big p { font-size: 14px; }
+  .bento__chip { width: 34px; height: 34px; }
+  .bento__chip svg { width: 18px; height: 18px; }
+  .bento__tile { padding: 18px 16px; gap: 14px; }
+  .bento__icon { width: 46px; height: 46px; }
+  .bento__icon svg { width: 22px; height: 22px; }
+  .bento__tile h3 { font-size: 14px; }
+  .bento__tile p { font-size: 13px; }
   .categories-intro { font-size: 16px; margin-bottom: 24px; }
   .visit { padding: 60px 0; margin-top: 60px; }
   .moments { gap: 70px; margin-top: 50px; }
