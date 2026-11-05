@@ -89,70 +89,137 @@
 
 <main class="wrap">
   <div class="container">
-    <section class="directory" data-directory data-one="restaurante" data-many="restaurantes" aria-label="Gastronomía">
-      <div class="directory__bar">
+    <section class="directory" data-directory data-one="lugar" data-many="lugares" aria-label="Gastronomía">
+      <!-- Finder (no card around it): eyebrow, search, then one pill per category with its number of places.
+           Each pill shows only its section; "Todos" shows every section in order. The hash (#bares, #cafe-postres...)
+           selects a pill on load, so other pages can link straight to one. Pills of categories with no venues yet look dimmed. -->
+      <div class="directory__bar directory__finder">
+        <p class="directory__eyebrow" aria-hidden="true">Encuentra dónde comer</p>
         <label class="directory__search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
           <input type="search" placeholder="Busca un restaurante, plato o tipo de comida" aria-label="Buscar en Gastronomía" autocomplete="off">
         </label>
+        <div class="directory__filters" role="group" aria-label="Filtrar por categoría">
+          <button type="button" class="directory__filter" data-filter="todos" aria-pressed="true">
+            <span class="directory__filter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/></svg></span>
+            <span class="directory__filter-name">Todos</span><span class="directory__filter-count"></span>
+          </button>
+          <button type="button" class="directory__filter" data-filter="restaurantes" aria-pressed="false">
+            <span class="directory__filter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v18M4.5 3v4.5a2.5 2.5 0 0 0 5 0V3M17.5 21V3C15.5 4.5 14.5 7 14.5 10v3.5h3"/></svg></span>
+            <span class="directory__filter-name">Restaurantes</span><span class="directory__filter-count"></span>
+          </button>
+          <button type="button" class="directory__filter" data-filter="bares" aria-pressed="false">
+            <span class="directory__filter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 4h15L12 12.5zM12 12.5V20m-4 0h8M7 6.8h10"/></svg></span>
+            <span class="directory__filter-name">Bares y licores</span><span class="directory__filter-count"></span>
+          </button>
+          <button type="button" class="directory__filter" data-filter="comida-rapida" aria-pressed="false">
+            <span class="directory__filter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5C4 7 7.6 4.5 12 4.5s8 2.5 8 6zM3.5 14h17M5 17h14v1a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/></svg></span>
+            <span class="directory__filter-name">Comida rápida</span><span class="directory__filter-count"></span>
+          </button>
+          <button type="button" class="directory__filter" data-filter="cafe-postres" aria-pressed="false">
+            <span class="directory__filter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9.5h11V14a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM15.5 10.5H17a2.5 2.5 0 0 1 0 5h-1.8M8 3.5c0 1 1 1.5 1 2.5M12 3.5c0 1 1 1.5 1 2.5"/></svg></span>
+            <span class="directory__filter-name">Café y postres</span><span class="directory__filter-count"></span>
+          </button>
+        </div>
         <p class="directory__count" aria-live="polite"></p>
       </div>
-      <div class="grid-3 directory__grid">
-        <article class="resto" data-tags="pizza pizzeria italiano italiana cafe panaderia brunch desayuno masa madre restaurante">
-          <a class="resto__img" href="la-romanezca.html">
-            <img class="resto__photo" loading="lazy" src="assets/locales/laromanezca/foto.webp" alt="Pizzas de masa madre y copas de vino en La Romanezca" style="object-position: center 30%">
-            <img class="resto__logo" src="assets/locales/laromanezca/logo.webp" alt="">
-          </a>
-          <div class="resto__body">
-            <div class="resto__row">
-              <h3 class="resto__name"><a href="la-romanezca.html">La Romanezca</a></h3>
-              <span class="status">Abierto</span>
+
+      <section class="directory__section" data-category="restaurantes" aria-labelledby="cat-restaurantes">
+        <div class="directory__head">
+          <h2 class="directory__heading display" id="cat-restaurantes">Restaurantes</h2>
+          <span class="directory__head-count"></span>
+        </div>
+        <div class="grid-3 directory__grid">
+          <article class="resto" data-tags="pizza pizzeria italiano italiana cafe panaderia brunch desayuno masa madre restaurante">
+            <a class="resto__img" href="la-romanezca.html">
+              <img class="resto__photo" loading="lazy" src="assets/locales/laromanezca/foto.webp" alt="Pizzas de masa madre y copas de vino en La Romanezca" style="object-position: center 30%">
+              <img class="resto__logo" src="assets/locales/laromanezca/logo.webp" alt="">
+            </a>
+            <div class="resto__body">
+              <div class="resto__row">
+                <h3 class="resto__name"><a href="la-romanezca.html">La Romanezca</a></h3>
+                <span class="status">Abierto</span>
+              </div>
+              <p class="resto__meta">Italiano artesanal · pizza de masa madre</p>
             </div>
-            <p class="resto__meta">Italiano artesanal · pizza de masa madre</p>
-          </div>
-          <div class="venue__actions">
-            <!-- TODO: reservation link pending -->
-            <a class="btn btn--green" href="#">Reservar mesa</a>
-            <a class="link link--md link--green" href="la-romanezca.html">Ver menú</a>
-          </div>
-        </article>
-        <article class="resto" data-tags="alta cocina gourmet autor carnes vinos cena especial restaurante">
-          <a class="resto__img" href="#">
-            <img class="resto__photo" loading="lazy" src="assets/locales/mugari/foto.webp" alt="Plato de carne terminado con soplete en Múgari Alta Cocina" style="object-position: center 72%">
-            <img class="resto__logo" src="assets/locales/mugari/logo.webp" alt="">
-          </a>
-          <div class="resto__body">
-            <div class="resto__row">
-              <h3 class="resto__name"><a href="#">Múgari Alta Cocina</a></h3>
-              <span class="status">Abierto</span>
+            <div class="venue__actions">
+              <!-- TODO: reservation link pending -->
+              <a class="btn btn--green" href="#">Reservar mesa</a>
+              <a class="link link--md link--green" href="la-romanezca.html">Ver menú</a>
             </div>
-            <p class="resto__meta">Cocina de autor · vinos</p>
-          </div>
-          <div class="venue__actions">
-            <!-- TODO: reservation and menu links pending -->
-            <a class="btn btn--green" href="#">Reservar mesa</a>
-            <a class="link link--md link--green" href="#">Ver local</a>
-          </div>
-        </article>
-        <article class="resto" data-tags="parrilla carnes asados cortes brasa almuerzo cena restaurante">
-          <a class="resto__img" href="#">
-            <img class="resto__photo" loading="lazy" src="assets/locales/palomulata/foto.webp" alt="Corte a la parrilla y limonadas en la mesa de Palomulata" style="object-position: center 45%">
-            <img class="resto__logo" src="assets/locales/palomulata/logo.webp" alt="">
-          </a>
-          <div class="resto__body">
-            <div class="resto__row">
-              <h3 class="resto__name"><a href="#">Palomulata</a></h3>
-              <span class="status">Abierto</span>
+          </article>
+          <article class="resto" data-tags="alta cocina gourmet autor carnes vinos cena especial restaurante">
+            <a class="resto__img" href="#">
+              <img class="resto__photo" loading="lazy" src="assets/locales/mugari/foto.webp" alt="Plato de carne terminado con soplete en Múgari Alta Cocina" style="object-position: center 72%">
+              <img class="resto__logo" src="assets/locales/mugari/logo.webp" alt="">
+            </a>
+            <div class="resto__body">
+              <div class="resto__row">
+                <h3 class="resto__name"><a href="#">Múgari Alta Cocina</a></h3>
+                <span class="status">Abierto</span>
+              </div>
+              <p class="resto__meta">Cocina de autor · vinos</p>
             </div>
-            <p class="resto__meta">Parrilla boutique · cortes a la brasa</p>
-          </div>
-          <div class="venue__actions">
-            <!-- TODO: reservation and menu links pending -->
-            <a class="btn btn--green" href="#">Reservar mesa</a>
-            <a class="link link--md link--green" href="#">Ver local</a>
-          </div>
-        </article>
-      </div>
+            <div class="venue__actions">
+              <!-- TODO: reservation and menu links pending -->
+              <a class="btn btn--green" href="#">Reservar mesa</a>
+              <a class="link link--md link--green" href="#">Ver local</a>
+            </div>
+          </article>
+          <article class="resto" data-tags="parrilla carnes asados cortes brasa almuerzo cena restaurante">
+            <a class="resto__img" href="#">
+              <img class="resto__photo" loading="lazy" src="assets/locales/palomulata/foto.webp" alt="Corte a la parrilla y limonadas en la mesa de Palomulata" style="object-position: center 45%">
+              <img class="resto__logo" src="assets/locales/palomulata/logo.webp" alt="">
+            </a>
+            <div class="resto__body">
+              <div class="resto__row">
+                <h3 class="resto__name"><a href="#">Palomulata</a></h3>
+                <span class="status">Abierto</span>
+              </div>
+              <p class="resto__meta">Parrilla boutique · cortes a la brasa</p>
+            </div>
+            <div class="venue__actions">
+              <!-- TODO: reservation and menu links pending -->
+              <a class="btn btn--green" href="#">Reservar mesa</a>
+              <a class="link link--md link--green" href="#">Ver local</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="directory__section" data-category="bares" aria-labelledby="cat-bares">
+        <div class="directory__head">
+          <h2 class="directory__heading display" id="cat-bares">Bares y licores</h2>
+          <span class="directory__head-count"></span>
+        </div>
+        <div class="grid-3 directory__grid">
+          <!-- Add bares y licores cards here (copy one from Restaurantes and adjust data-tags) -->
+        </div>
+        <p class="directory__soon"><strong>Muy pronto</strong>Aquí vas a encontrar los bares, cervecerías y la licorera de Lago Verde.</p>
+      </section>
+
+      <section class="directory__section" data-category="comida-rapida" aria-labelledby="cat-comida-rapida">
+        <div class="directory__head">
+          <h2 class="directory__heading display" id="cat-comida-rapida">Comida rápida</h2>
+          <span class="directory__head-count"></span>
+        </div>
+        <div class="grid-3 directory__grid">
+          <!-- Add comida rápida cards here (copy one from Restaurantes and adjust data-tags) -->
+        </div>
+        <p class="directory__soon"><strong>Muy pronto</strong>Aquí vas a encontrar las opciones de comida rápida de Lago Verde.</p>
+      </section>
+
+      <section class="directory__section" data-category="cafe-postres" aria-labelledby="cat-cafe-postres">
+        <div class="directory__head">
+          <h2 class="directory__heading display" id="cat-cafe-postres">Café y postres</h2>
+          <span class="directory__head-count"></span>
+        </div>
+        <div class="grid-3 directory__grid">
+          <!-- Add café y postres cards here (copy one from Restaurantes and adjust data-tags) -->
+        </div>
+        <p class="directory__soon"><strong>Muy pronto</strong>Aquí vas a encontrar las panaderías, cafés y heladerías de Lago Verde.</p>
+      </section>
+
       <p class="directory__empty" hidden>No encontramos lugares con esa búsqueda. Prueba con otra palabra.</p>
     </section>
   </div>

@@ -277,6 +277,9 @@
 
   // Category pages (gastronomia.html, bienestar.html, tiendas.html): live search over the venue cards.
   // Matches every word typed against the card text plus its data-tags, ignoring accents and case.
+  // Pages split into .directory__section blocks (gastronomia.html) also get category buttons:
+  // "todos" lists every section that has venues, any other button shows only its section
+  // (with its "Muy pronto" note when it has no venues yet). The URL hash keeps the chosen tab.
   const norm = (t) => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   document.querySelectorAll('[data-directory]').forEach((dir) => {
     const input = dir.querySelector('.directory__search input');
@@ -285,19 +288,81 @@
     const empty = dir.querySelector('.directory__empty');
     if (!input || !cards.length) return;
     const text = cards.map((c) => norm(c.textContent + ' ' + (c.dataset.tags || '')));
+    const sections = [...dir.querySelectorAll('.directory__section')].map((el) => ({
+      el,
+      cat: el.dataset.category,
+      cards: [...el.querySelectorAll('.directory__grid > article')],
+      soon: el.querySelector('.directory__soon'),
+    }));
+    const filters = [...dir.querySelectorAll('.directory__filter')];
+    const cats = new Set(sections.map((s) => s.cat));
+    let current = 'todos';
+
     const update = () => {
       const words = norm(input.value).split(/\s+/).filter(Boolean);
+      const visible = new Set(cards.filter((c, i) => words.every((w) => text[i].includes(w))));
       let shown = 0;
-      cards.forEach((c, i) => {
-        const match = words.every((w) => text[i].includes(w));
-        c.hidden = !match;
-        if (match) shown++;
+      cards.forEach((c) => {
+        const inCat = current === 'todos' || c.closest('.directory__section')?.dataset.category === current;
+        c.hidden = !(inCat && visible.has(c));
+        if (!c.hidden) shown++;
       });
-      count.textContent = `${shown} ${shown === 1 ? dir.dataset.one : dir.dataset.many}`;
-      empty.hidden = shown > 0;
+      const label = (n) => `${n} ${n === 1 ? dir.dataset.one : dir.dataset.many}`;
+      let soonShown = false;
+      sections.forEach((s) => {
+        const picked = current === 'todos' || s.cat === current;
+        const matches = s.cards.filter((c) => !c.hidden).length;
+        // A category with no venues yet only appears when its own tab is chosen, as "Muy pronto".
+        const isSoon = picked && current !== 'todos' && !s.cards.length;
+        s.el.hidden = !(matches || isSoon);
+        if (s.soon) s.soon.hidden = !isSoon;
+        soonShown = soonShown || isSoon;
+        const head = s.el.querySelector('.directory__head-count');
+        if (head) head.textContent = isSoon ? 'Muy pronto' : label(matches);
+      });
+      count.textContent = label(shown);
+      empty.hidden = shown > 0 || soonShown;
+      // Each pill shows how many places in its category match the search ("Todos" = all categories)
+      filters.forEach((b) => {
+        const out = b.querySelector('.directory__filter-count');
+        if (!out) return;
+        const sec = sections.find((s) => s.cat === b.dataset.filter);
+        out.textContent = (sec ? sec.cards : cards).filter((c) => visible.has(c)).length;
+      });
     };
+
+    // Pills of categories with no venues yet look dimmed (they still open their "Muy pronto" note)
+    filters.forEach((b) => {
+      const sec = sections.find((s) => s.cat === b.dataset.filter);
+      b.classList.toggle('is-empty', !!sec && !sec.cards.length);
+    });
+
+    // On narrow screens the pills scroll sideways: bring the chosen one into view
+    const rail = dir.querySelector('.directory__filters');
+    const reveal = () => {
+      const btn = filters.find((b) => b.dataset.filter === current);
+      if (!rail || !btn || rail.scrollWidth <= rail.clientWidth) return;
+      const { scrollLeft, clientWidth } = rail;
+      if (btn.offsetLeft < scrollLeft || btn.offsetLeft + btn.offsetWidth > scrollLeft + clientWidth) {
+        rail.scrollTo({ left: btn.offsetLeft - (clientWidth - btn.offsetWidth) / 2, behavior: 'smooth' });
+      }
+    };
+
+    const select = (cat, push) => {
+      current = cats.has(cat) ? cat : 'todos';
+      filters.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === current)));
+      if (push) history.replaceState(null, '', current === 'todos' ? location.pathname + location.search : `#${current}`);
+      update();
+      reveal();
+    };
+
+    filters.forEach((b) => b.addEventListener('click', () => select(b.dataset.filter, true)));
+    window.addEventListener('hashchange', () => {
+      const cat = location.hash.slice(1);
+      if (cats.has(cat)) select(cat, false);
+    });
     input.addEventListener('input', update);
-    update();
+    select(location.hash.slice(1), false);
   });
 
   // Restaurant page menu (la-romanezca.html): dish search, "Ver N platos más", section tabs that
