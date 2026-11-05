@@ -722,6 +722,37 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
   .rv-dialog[open], .rv-dialog[open]::backdrop { animation: none; }
 }
 
+/* ===== Instagram: copy and follow button beside a 3×2 grid of posts (second row nudged right) ===== */
+.social {
+  display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(36px, 5vw, 80px); align-items: center;
+  margin-top: 100px;
+}
+.social__eyebrow {
+  margin: 0 0 14px; font-family: var(--f-brand); font-size: 17px; letter-spacing: .08em; text-transform: uppercase;
+  -webkit-text-stroke: .3px currentColor; color: var(--c-primary);
+}
+.social h2 { font-size: clamp(30px, 3.3vw, 48px); line-height: 1; letter-spacing: -.01em; color: #000; text-wrap: balance; }
+.social__lead { max-width: 440px; margin: 22px 0 30px; font-size: 18px; line-height: 1.6; color: var(--c-brown); }
+.social__lead strong { color: var(--c-text); }
+.social__btn { gap: 10px; }
+.social__btn svg { width: 20px; height: 20px; }
+.social__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding-right: 36px; }
+.social__post:nth-child(n+4) { transform: translateX(36px); }
+.social__post {
+  position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: 16px; background: #2b2b2b;
+}
+.social__post img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.social__hover {
+  position: absolute; inset: 0; display: grid; place-items: center; color: var(--c-white);
+  background: rgba(32, 92, 64, .55); opacity: 0; transition: opacity .25s ease;
+}
+.social__hover svg { width: 38px; height: 38px; }
+.social__post:hover img { transform: scale(1.06); }
+.social__post:hover .social__hover, .social__post:focus-visible .social__hover { opacity: 1; }
+.social__reel { position: absolute; top: 10px; right: 10px; color: var(--c-white); filter: drop-shadow(0 1px 4px rgba(0,0,0,.5)); }
+.social__reel svg { width: 20px; height: 20px; display: block; }
+@media (prefers-reduced-motion: reduce) { .social__post img, .social__hover { transition: none; } }
+
 /* ===== Cómo llegar: address card, quick facts and route steps beside an embedded Google map ===== */
 .directions {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(36px, 5vw, 80px); align-items: center;
@@ -918,6 +949,9 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
   }
   .newsletter { flex-basis: 100%; }
   .footer-cols { flex-basis: 100%; margin: 20px 0 0; }
+  .social { grid-template-columns: 1fr; margin-top: 80px; }
+  .social__grid { padding-right: 0; }
+  .social__post:nth-child(n+4) { transform: none; }
 }
 @media (max-width: 767px) {
   /* Phones: no tab row. At the top the hero menu shows logo, icons and hamburger (its panel
@@ -976,6 +1010,9 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
   .shop__details h3 { font-size: 20px; }
   .divider { margin: 60px 0 70px; }
   .footer-cols { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .social__grid { gap: 8px; }
+  .social__post { border-radius: 10px; }
+  .social__btn { width: 100%; }
   .footer-cols > :last-child { grid-column: 1 / -1; }
   .footer-bottom ul, .footer-bottom .credits { flex-basis: 100%; justify-content: center; }
   .footer-bottom .credits { margin-top: 16px; }
