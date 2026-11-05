@@ -285,16 +285,48 @@ main.wrap { padding-top: 100px; }
 
 /* Day & night (content from lagoverde.com.co) */
 .daynight-intro { max-width: 780px; margin: 0 0 40px; font-size: 18px; line-height: 1.6; }
-.moment {
-  display: flex; flex-direction: column; gap: 18px; padding: 40px 36px;
-  background: var(--c-bg-alt); border-top: 3px solid var(--c-primary);
+.moments { display: flex; flex-direction: column; gap: 110px; margin-top: 70px; }
+.moment__head { max-width: 720px; margin: 0 auto 44px; text-align: center; }
+.moment__eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--c-primary);
 }
-.moment__icon { width: 36px; height: 36px; color: var(--c-primary); }
-.moment__time { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--c-primary); }
-.moment h3 { font-size: 18px; line-height: 24px; }
-.moment ul { display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 0; list-style: none; }
-.moment li { position: relative; padding-left: 18px; font-size: 16px; line-height: 1.5; }
-.moment li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--c-sage); }
+.moment__icon { width: 26px; height: 26px; color: var(--c-primary); }
+.moment__head h3 { font-size: clamp(28px, 3.2vw, 44px); line-height: 1.1; color: #000; }
+.moment__head p { margin: 18px 0 0; font-size: 18px; line-height: 1.6; color: var(--c-grey-dark); }
+
+/* Activity cards: full-bleed photo with a floating white caption and a round arrow */
+.activities { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.activity {
+  position: relative; display: block; height: 460px; overflow: hidden; border-radius: 24px;
+  background: var(--c-primary); color: inherit; text-decoration: none; isolation: isolate;
+}
+.activity__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2, .7, .2, 1); }
+.activity:hover .activity__img { transform: scale(1.05); }
+/* Branded tile while a photo is pending */
+.activity__img--pending {
+  display: grid; place-items: center;
+  background: radial-gradient(120% 90% at 30% 20%, #2C7352 0%, var(--c-primary) 45%, var(--c-accent) 100%);
+}
+.activity__img--pending img { width: 46%; max-width: 180px; height: auto; margin-bottom: 90px; opacity: .9; }
+.activity__card {
+  position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1;
+  padding: 26px 24px 24px; border-radius: 16px; background: var(--c-white);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .25);
+}
+.activity__card h4 {
+  margin: 0 0 8px; padding-right: 40px; font-family: var(--f-display); font-stretch: var(--display-stretch); font-weight: 700;
+  font-size: 19px; line-height: 1.2; color: var(--c-text);
+}
+.activity__card p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--c-grey-dark); }
+.activity__arrow {
+  position: absolute; top: -24px; right: 22px; display: grid; place-items: center;
+  width: 48px; height: 48px; border-radius: 50%; background: var(--c-primary); color: var(--c-white);
+  box-shadow: 0 6px 16px -6px rgba(23, 61, 44, .6); transition: background-color .25s ease, transform .25s ease;
+}
+.activity__arrow svg { width: 18px; height: 18px; }
+.activity:hover .activity__arrow { background: var(--c-accent); transform: rotate(45deg); }
+.activity:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 4px; }
 
 /* Plan your visit band */
 .visit { margin-top: 100px; padding: 90px 0; background: var(--c-primary); color: var(--c-white); }
@@ -357,6 +389,8 @@ main.wrap { padding-top: 100px; }
 .reveal.is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+  .activity__img, .activity__arrow { transition: none; }
+  .activity:hover .activity__img, .activity:hover .activity__arrow { transform: none; }
   .hero__slide { transition: none; }
 }
 
@@ -379,6 +413,9 @@ main.wrap { padding-top: 100px; }
   .hero__subheading { font-size: 15px; }
   :root { --menu-h: 76px; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .moments { gap: 90px; }
+  .activities { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .activity { height: 420px; }
   .wo-grid .span-2 { grid-column: span 2; }
   .wo-card .venue__img img { height: 420px; }
   .visit__grid { grid-template-columns: repeat(2, 1fr); }
@@ -400,7 +437,12 @@ main.wrap { padding-top: 100px; }
   .wo-card .venue__img img { height: 320px; }
   .visit__grid { grid-template-columns: 1fr; }
   .visit { padding: 60px 0; margin-top: 60px; }
-  .moment { padding: 30px 24px; }
+  .moments { gap: 70px; margin-top: 50px; }
+  .moment__head { margin-bottom: 30px; }
+  .moment__head p { font-size: 16px; }
+  .activities { grid-template-columns: 1fr; gap: 20px; }
+  .activity { height: 400px; border-radius: 20px; }
+  .activity__card { left: 14px; right: 14px; bottom: 14px; padding: 24px 20px 20px; }
   .arch { min-height: 440px; }
   .shop { flex-direction: column; }
   .shop__details h3 { font-size: 20px; }
@@ -514,37 +556,114 @@ main.wrap { padding-top: 100px; }
         <a class="link link--lg" href="#visita">Planea tu visita</a>
       </div>
       <p class="daynight-intro">En medio del sur de Cali, Lago Verde es la pausa perfecta: un Parque Comercial en Pance diseñado para disfrutar sin prisa frente al lago, del amanecer al anochecer, de 5&nbsp;a.m. a 11&nbsp;p.m. y con todo lo que necesitas en un solo lugar.</p>
-      <div class="grid-3">
+      <div class="moments">
         <article class="moment">
-          <svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 4v3M4.9 9.9l1.4 1.4M19.1 9.9l-1.4 1.4M2 14h2M20 14h2"/></svg>
-          <span class="moment__time">Desde las 5:00 a.m.</span>
-          <h3 class="display">Empieza el día con energía</h3>
-          <ul>
-            <li><strong>Entrena en el gym</strong> y activa tu día en un lugar que solo transmite paz.</li>
-            <li><strong>Desayuna en las panaderías:</strong> café recién hecho y pandebono caliente al aire libre.</li>
-            <li><strong>Ven con tu mascota:</strong> un ecosistema natural para que tu peludo también disfrute del paseo.</li>
-          </ul>
+          <header class="moment__head reveal">
+            <span class="moment__eyebrow"><svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 18h18M6 18a6 6 0 0 1 12 0M12 4v3M4.9 9.9l1.4 1.4M19.1 9.9l-1.4 1.4M2 14h2M20 14h2"/></svg>Desde las 5:00 a.m.</span>
+            <h3 class="display">Empieza el día con energía</h3>
+            <p>Aire fresco, café recién hecho y espacio para moverte: así arranca la mañana frente al lago.</p>
+          </header>
+          <div class="activities">
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <img class="activity__img" loading="lazy" src="assets/momentos/manana/gym.webp" alt="Mujer descansando tras entrenar en The One Wellness Club" style="object-position: center 20%">
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Entrena en el gym</h4>
+                <p>Activa tu día en un lugar que solo transmite paz.</p>
+              </div>
+            </a>
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <img class="activity__img" loading="lazy" src="assets/momentos/manana/panaderia.webp" alt="Desayuno con huevos, croissants y pan en Le Croissant" style="object-position: center 20%">
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Desayuna en las panaderías</h4>
+                <p>Café recién hecho y pandebono caliente al aire libre.</p>
+              </div>
+            </a>
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <img class="activity__img" loading="lazy" src="assets/momentos/manana/mascotas.webp" alt="Perro descansando junto a las mesas al aire libre de Lago Verde" style="object-position: 30% 60%">
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Ven con tu mascota</h4>
+                <p>Un ecosistema natural para que tu peludo también disfrute del paseo.</p>
+              </div>
+            </a>
+          </div>
+        </article>
+        <!-- TODO: midday and night use provisional photos; replace with their own images -->
+        <article class="moment">
+          <header class="moment__head reveal">
+            <span class="moment__eyebrow"><svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>Al mediodía</span>
+            <h3 class="display">Almuerza y relájate</h3>
+            <p>Una pausa a mitad del día para comer bien, caminar junto al agua y consentirte.</p>
+          </header>
+          <div class="activities">
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <img class="activity__img" loading="lazy" src="assets/locales/laromanezca/foto.webp" alt="Pizzas de masa madre en La Romanezca" style="object-position: center 30%">
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Almuerzo a tu gusto</h4>
+                <p>Restaurantes gourmet, cocina local o comida saludable.</p>
+              </div>
+            </a>
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <img class="activity__img" loading="lazy" src="assets/foto2.webp" alt="Lago de Lago Verde con su fuente y terrazas al fondo" style="object-position: 70% center">
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Caminata frente al lago</h4>
+                <p>Observa el lago, alimenta los peces o simplemente déjate llevar.</p>
+              </div>
+            </a>
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <div class="activity__img activity__img--pending"><img src="assets/logo-lago-verde-compact-white.png" alt=""></div> <!-- TODO: photo pending -->
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Retoque de estilo</h4>
+                <p>Barbería y servicios de belleza para salir renovado.</p>
+              </div>
+            </a>
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <div class="activity__img activity__img--pending"><img src="assets/logo-lago-verde-compact-white.png" alt=""></div> <!-- TODO: photo pending -->
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>La Nave Espacial</h4>
+                <p>Zona de juegos segura y sin costo para los más pequeños.</p>
+              </div>
+            </a>
+          </div>
         </article>
         <article class="moment">
-          <svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
-          <span class="moment__time">Al mediodía</span>
-          <h3 class="display">Almuerza y relájate</h3>
-          <ul>
-            <li><strong>Almuerzo a tu gusto:</strong> restaurantes gourmet, cocina local o comida saludable.</li>
-            <li><strong>Caminata frente al lago:</strong> observa el lago, alimenta los peces o simplemente déjate llevar.</li>
-            <li><strong>Retoque de estilo</strong> en la barbería y los servicios de belleza.</li>
-            <li><strong>La Nave Espacial:</strong> zona de juegos segura y sin costo para los más pequeños.</li>
-          </ul>
-        </article>
-        <article class="moment">
-          <svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/><path d="M16 3.5l.5 1.5 1.5.5-1.5.5-.5 1.5-.5-1.5-1.5-.5 1.5-.5Z"/></svg>
-          <span class="moment__time">Hasta las 11:00 p.m.</span>
-          <h3 class="display">El plan de la noche</h3>
-          <ul>
-            <li><strong>Cervecerías y bares</strong> para compartir una cena con buenos brindis frente al lago.</li>
-            <li><strong>Terrazas iluminadas</strong> con coctelería artesanal y cerveza local.</li>
-            <li><strong>Un ambiente acogedor</strong> para conversar con amigos mientras cae la tarde sobre Pance.</li>
-          </ul>
+          <header class="moment__head reveal">
+            <span class="moment__eyebrow"><svg class="moment__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/><path d="M16 3.5l.5 1.5 1.5.5-1.5.5-.5 1.5-.5-1.5-1.5-.5 1.5-.5Z"/></svg>Hasta las 11:00 p.m.</span>
+            <h3 class="display">El plan de la noche</h3>
+            <p>Cuando cae la tarde sobre Pance, el lago se ilumina y empieza el plan con amigos.</p>
+          </header>
+          <div class="activities">
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <img class="activity__img" loading="lazy" src="assets/locales/palomulata/foto.webp" alt="Limonadas y plato servido en la mesa de Palomulata" style="object-position: center 40%">
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Cervecerías y bares</h4>
+                <p>Una cena con buenos brindis frente al lago.</p>
+              </div>
+            </a>
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <img class="activity__img" loading="lazy" src="assets/locales/mugari/foto.webp" alt="Plato terminado con soplete en Múgari Alta Cocina" style="object-position: center 60%">
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Terrazas iluminadas</h4>
+                <p>Coctelería artesanal y cerveza local bajo las luces.</p>
+              </div>
+            </a>
+            <a class="activity" href="#"> <!-- TODO: link pending -->
+              <div class="activity__img activity__img--pending"><img src="assets/logo-lago-verde-compact-white.png" alt=""></div> <!-- TODO: photo pending -->
+              <div class="activity__card">
+                <span class="activity__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                <h4>Un ambiente acogedor</h4>
+                <p>Para conversar con amigos mientras cae la tarde sobre Pance.</p>
+              </div>
+            </a>
+          </div>
         </article>
       </div>
     </section>
