@@ -301,19 +301,10 @@ main.wrap { padding-top: 100px; }
 .directory__soon strong { display: block; margin-bottom: 6px; font-family: var(--f-display); font-stretch: var(--display-stretch); font-size: 18px; text-transform: uppercase; color: var(--c-text); }
 
 /* What's On */
-.wo-grid .span-2 { grid-column: span 2; }
 .wo-card { display: flex; flex-direction: column; gap: 20px; }
-.wo-card .venue__img img { height: 600px; }
+/* Event posters are 4:5, so the image keeps that shape and is never cropped */
+.wo-card .venue__img img { height: auto; aspect-ratio: 4 / 5; }
 .wo-card .link { color: var(--c-text); }
-.tiles { padding-top: 20px; }
-.tile {
-  position: relative; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
-  min-height: 352px; padding: 30px; overflow: hidden; text-decoration: none; isolation: isolate;
-}
-.tile__bg { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: center; transition: transform .6s ease; }
-.tile::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, var(--c-text) 0%, transparent 40%); }
-.tile:hover .tile__bg { transform: scale(1.04); }
-.tile h3 { font-size: 18px; color: var(--c-white); }
 
 /* Events (arched cards) */
 .arch {
@@ -876,8 +867,8 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
   .moments { gap: 90px; }
   .activities { grid-template-columns: repeat(2, 1fr); gap: 22px; }
   .activity { height: 420px; }
-  .wo-grid .span-2 { grid-column: span 2; }
-  .wo-card .venue__img img { height: 420px; }
+  /* Keep the three event posters in one row on tablets */
+  .wo-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .bento {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 180px 180px 200px minmax(190px, auto);
@@ -902,8 +893,6 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
   .hero__buttons { flex-direction: column; align-items: stretch; }
   .section-head h2 { font-size: 24px; }
   .grid-3 { grid-template-columns: 1fr; }
-  .wo-grid .span-2 { grid-column: auto; }
-  .wo-card .venue__img img { height: 320px; }
   .bento {
     gap: 12px; grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 240px 190px 190px 190px auto;
