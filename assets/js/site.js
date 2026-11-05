@@ -53,40 +53,52 @@
   });
 
   // Opiniones (Google reviews): score count-up, rotating featured quote, drifting review wall and a
-  // dialog with the full review. Motion pauses on hover/focus, off screen, while the dialog is open
-  // and with the "Pausar movimiento" button; reduced motion turns it off.
+  // dialog with the full review. Motion pauses off screen, while the dialog is open and with the
+  // "Pausar movimiento" button; reduced motion turns it off. The featured quotes follow the WAI-ARIA
+  // carousel pattern: their own stop/start button comes first, a mouse over them pauses rotation,
+  // and keyboard focus entering them stops it until the user starts it again.
   document.querySelectorAll('[data-reviews]').forEach((band) => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     const featured = band.querySelector('[data-featured]');
+    const slidesBox = featured.querySelector('.featured__slides');
     const slides = [...featured.querySelectorAll('.featured__slide')];
     const dots = [...featured.querySelectorAll('.featured__dot')];
+    const rotateBtn = featured.querySelector('[data-rotate]');
     const wall = band.querySelector('[data-wall]');
     const rows = [...wall.querySelectorAll('.marquee')];
     const pauseBtn = band.querySelector('[data-pause]');
     const dialog = band.querySelector('.rv-dialog');
-    const state = { user: false, visible: false, hover: false, focus: false };
+    const state = { user: false, visible: false, hover: false, rotating: !reduce.matches };
 
     const sync = () => {
       const still = state.user || !state.visible || dialog.open;
       band.classList.toggle('is-paused', still);
       band.classList.toggle('is-user-paused', state.user);
-      featured.classList.toggle('is-paused', still || state.hover || state.focus);
+      featured.classList.toggle('is-paused', still || state.hover || !state.rotating);
+      featured.classList.toggle('is-stopped', !state.rotating);
+      rotateBtn.setAttribute('aria-label', state.rotating ? 'Detener la rotación de opiniones' : 'Iniciar la rotación de opiniones');
+      // Announce slide changes only while nothing changes them on its own
+      slidesBox.setAttribute('aria-live', state.rotating && !state.user ? 'off' : 'polite');
     };
     new IntersectionObserver(([e]) => { state.visible = e.isIntersecting; sync(); }).observe(band);
     pauseBtn.addEventListener('click', () => {
       state.user = !state.user;
+      state.rotating = !state.user;
       pauseBtn.querySelector('[data-label]').textContent = state.user ? 'Reanudar movimiento' : 'Pausar movimiento';
       sync();
     });
 
-    // Score counts up from 0 the first time it scrolls into view
+    // Score counts up from 0 the first time it scrolls into view. The real number stays in the HTML
+    // until the card starts to show (it is still faded out then), so nothing that doesn't scroll sees "0,0".
     const num = band.querySelector('[data-count]');
     const target = parseFloat(num.dataset.count);
     const fmt = (v) => v.toFixed(1).replace('.', ',');
     if (!reduce.matches) {
-      num.textContent = fmt(0);
+      let reset = false;
       const io = new IntersectionObserver(([e]) => {
         if (!e.isIntersecting) return;
+        if (!reset) { reset = true; num.textContent = fmt(0); }
+        if (e.intersectionRatio < 0.6) return;
         io.disconnect();
         if (document.hidden) { num.textContent = fmt(target); return; }
         const t0 = performance.now() + 250;
@@ -96,7 +108,7 @@
           if (p < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
-      }, { threshold: 0.6 });
+      }, { threshold: [0, 0.6] });
       io.observe(num);
     }
 
@@ -123,11 +135,12 @@
     featured.querySelectorAll('[data-step]').forEach((b) => {
       b.addEventListener('click', () => show(current + Number(b.dataset.step)));
     });
+    rotateBtn.addEventListener('click', () => { state.rotating = !state.rotating; sync(); });
     featured.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { state.hover = true; sync(); } });
     featured.addEventListener('pointerleave', () => { state.hover = false; sync(); });
-    featured.addEventListener('focusin', () => { state.focus = true; sync(); });
-    featured.addEventListener('focusout', (e) => {
-      if (!featured.contains(e.relatedTarget)) { state.focus = false; sync(); }
+    // Keyboard focus arriving from outside stops rotation for good (a mouse click doesn't count)
+    featured.addEventListener('focusin', (e) => {
+      if (!featured.contains(e.relatedTarget) && e.target.matches(':focus-visible')) { state.rotating = false; sync(); }
     });
 
     // Review wall: clone each row's cards enough times to fill it, then CSS slides the track by

@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Marcellus&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -350,15 +351,16 @@
           </div>
         </aside>
 
-        <div class="featured reveal" data-featured>
+        <div class="featured reveal" data-featured role="region" aria-roledescription="carrusel" aria-label="Opiniones destacadas">
+          <button class="featured__toggle" type="button" data-rotate aria-label="Detener la rotación de opiniones"><svg class="featured__icon-pause" aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M7 5h3v14H7zm7 0h3v14h-3z"/></svg><svg class="featured__icon-play" aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></button>
           <span class="featured__mark" aria-hidden="true">“</span>
-          <div class="featured__slides">
-            <figure class="featured__slide is-active" data-review>
+          <div class="featured__slides" aria-live="off">
+            <figure class="featured__slide is-active" data-review role="group" aria-roledescription="diapositiva" aria-label="1 de 5">
               <blockquote class="featured__quote"><p>Me gustó mucho porque no es el típico centro comercial cerrado, sino más bien un espacio abierto con un lago que le da un ambiente súper especial.</p></blockquote>
               <figcaption class="featured__author">
                 <span class="avatar avatar--lg" style="--avatar: #9ABB91" aria-hidden="true">S</span>
                 <span class="featured__who">
-                  <cite class="featured__name" data-name>Shamar Padridin</cite>
+                  <cite class="featured__name" data-name>Shamar P.</cite>
                   <span class="featured__meta"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-04">abril de 2026</time></span>
                 </span>
               </figcaption>
@@ -370,12 +372,12 @@
                 <p>Es un plan cool para ir en pareja, con amigos o incluso en familia</p>
               </template>
             </figure>
-            <figure class="featured__slide" data-review aria-hidden="true" inert>
+            <figure class="featured__slide" data-review role="group" aria-roledescription="diapositiva" aria-label="2 de 5" aria-hidden="true" inert>
               <blockquote class="featured__quote"><p>Me sentí como en Porto Rotondo en Italia😍. El sitio es muy lindo, diversidad de restaurantes, ambiente súper natural y acogedor!</p></blockquote>
               <figcaption class="featured__author">
                 <span class="avatar avatar--lg" style="--avatar: #D8C9A0" aria-hidden="true">C</span>
                 <span class="featured__who">
-                  <cite class="featured__name" data-name>Claudia Meneses Calvache</cite>
+                  <cite class="featured__name" data-name>Claudia M.</cite>
                   <span class="featured__meta"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-03">marzo de 2026</time></span>
                 </span>
               </figcaption>
@@ -383,12 +385,12 @@
                 <p>Me sentí como en Porto Rotondo en Italia😍. El sitio es muy lindo, diversidad de restaurantes, ambiente súper natural y acogedor! Recomendado en familia, parejas, amigos! En cualquier momento para cualquier ocasión.</p>
               </template>
             </figure>
-            <figure class="featured__slide" data-review aria-hidden="true" inert>
+            <figure class="featured__slide" data-review role="group" aria-roledescription="diapositiva" aria-label="3 de 5" aria-hidden="true" inert>
               <blockquote class="featured__quote"><p>Mi nuevo mall favorito, no solo los lugares para comer, sino tambien el ambiente y lo verdeee que es. Mucha naturaleza y eso me encanta.</p></blockquote>
               <figcaption class="featured__author">
                 <span class="avatar avatar--lg" style="--avatar: #BFD6B6" aria-hidden="true">K</span>
                 <span class="featured__who">
-                  <cite class="featured__name" data-name>Kelly Lobo</cite>
+                  <cite class="featured__name" data-name>Kelly L.</cite>
                   <span class="featured__meta"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-05">mayo de 2026</time></span>
                 </span>
               </figcaption>
@@ -396,12 +398,12 @@
                 <p>Mi nuevo mall favorito, no solo los lugares para comer, sino tambien el ambiente y lo verdeee que es. Mucha naturaleza y eso me encanta.</p>
               </template>
             </figure>
-            <figure class="featured__slide" data-review aria-hidden="true" inert>
+            <figure class="featured__slide" data-review role="group" aria-roledescription="diapositiva" aria-label="4 de 5" aria-hidden="true" inert>
               <blockquote class="featured__quote"><p>¡Qué descubrimiento tan maravilloso! … El diseño paisajístico del lugar es verdaderamente espectacular y muy cuidado.</p></blockquote>
               <figcaption class="featured__author">
                 <span class="avatar avatar--lg" style="--avatar: #D9B08C" aria-hidden="true">S</span>
                 <span class="featured__who">
-                  <cite class="featured__name" data-name>Sergio Velasquez</cite>
+                  <cite class="featured__name" data-name>Sergio V.</cite>
                   <span class="featured__meta"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-01">enero de 2026</time></span>
                 </span>
               </figcaption>
@@ -409,12 +411,12 @@
                 <p>¡Qué descubrimiento tan maravilloso! Me encantó la variedad de opciones culinarias que ofrecen. El diseño paisajístico del lugar es verdaderamente espectacular y muy cuidado. Es un sitio ideal para disfrutar de una buena comida y de un entorno precioso. Sin duda, una experiencia muy recomendable para quienes buscan calidad y belleza.</p>
               </template>
             </figure>
-            <figure class="featured__slide" data-review aria-hidden="true" inert>
+            <figure class="featured__slide" data-review role="group" aria-roledescription="diapositiva" aria-label="5 de 5" aria-hidden="true" inert>
               <blockquote class="featured__quote"><p>Espectacular sitio para ir a caminar, comer algo delicioso y sentarse a tomar unas cervezas… el lago con la iluminación me gustaron mucho.</p></blockquote>
               <figcaption class="featured__author">
                 <span class="avatar avatar--lg" style="--avatar: #B5AD86" aria-hidden="true">M</span>
                 <span class="featured__who">
-                  <cite class="featured__name" data-name>Mario Echeverri</cite>
+                  <cite class="featured__name" data-name>Mario E.</cite>
                   <span class="featured__meta"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-04">abril de 2026</time></span>
                 </span>
               </figcaption>
@@ -424,12 +426,12 @@
             </figure>
           </div>
           <div class="featured__controls">
-            <div class="featured__progress" aria-label="Opiniones destacadas">
-              <button class="featured__dot is-active" type="button" aria-label="Opinión destacada 1 de 5" aria-current="true"><span></span></button>
-              <button class="featured__dot" type="button" aria-label="Opinión destacada 2 de 5" aria-current="false"><span></span></button>
-              <button class="featured__dot" type="button" aria-label="Opinión destacada 3 de 5" aria-current="false"><span></span></button>
-              <button class="featured__dot" type="button" aria-label="Opinión destacada 4 de 5" aria-current="false"><span></span></button>
-              <button class="featured__dot" type="button" aria-label="Opinión destacada 5 de 5" aria-current="false"><span></span></button>
+            <div class="featured__progress" role="group" aria-label="Elegir opinión destacada">
+              <button class="featured__dot is-active" type="button" aria-label="Mostrar opinión 1 de 5" aria-current="true"><span></span></button>
+              <button class="featured__dot" type="button" aria-label="Mostrar opinión 2 de 5" aria-current="false"><span></span></button>
+              <button class="featured__dot" type="button" aria-label="Mostrar opinión 3 de 5" aria-current="false"><span></span></button>
+              <button class="featured__dot" type="button" aria-label="Mostrar opinión 4 de 5" aria-current="false"><span></span></button>
+              <button class="featured__dot" type="button" aria-label="Mostrar opinión 5 de 5" aria-current="false"><span></span></button>
             </div>
             <button class="featured__more" type="button" data-open>Leer reseña completa</button>
             <div class="featured__arrows">
@@ -445,62 +447,62 @@
           <div class="marquee__track">
             <ul class="marquee__group">
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #B5AD86" aria-hidden="true">O</span><div><h3 class="rcard__name" data-name>ODIZEO</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de ODIZEO</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #B5AD86" aria-hidden="true">O</span><div><p class="rcard__name" data-name>ODIZEO</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de ODIZEO</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-05">mayo de 2026</time></div>
                 <div class="rcard__text" data-text><p>El Parque Comercial Lago Verde es un desarrollo arquitectónico muy bien logrado que combina de manera inteligente lo moderno con lo natural. Sus espacios abiertos, zonas verdes y diseño contemporáneo crean una atmósfera agradable que invita a quedarse y recorrerlo sin prisa.</p><p>Es un lugar versátil, perfecto para pasear, tardear, disfrutar de una buena comida o simplemente compartir una velada en compañía. La oferta gastronómica es variada y bien pensada, lo que lo convierte en un punto de encuentro atractivo para distintos gustos.</p><p>En definitiva, es un espacio que vale la pena conocer en Cali, no solo por su diseño, sino por la experiencia completa que ofrece alrededor del ocio, la gastronomía y el ambiente.</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #D9B08C" aria-hidden="true">J</span><div><h3 class="rcard__name" data-name>Jazmin Lasso Triana</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Jazmin Lasso Triana</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #D9B08C" aria-hidden="true">J</span><div><p class="rcard__name" data-name>Jazmin L.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Jazmin L.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-05">mayo de 2026</time></div>
                 <div class="rcard__text" data-text><p>Un lugar nuevo muy hermoso que hay que visitar en Cali ✔️ espacios para tardear, reuniones de negocios y coworking</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #BFD6B6" aria-hidden="true">D</span><div><h3 class="rcard__name" data-name>David Morales</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de David Morales</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #BFD6B6" aria-hidden="true">D</span><div><p class="rcard__name" data-name>David M.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de David M.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-11">noviembre de 2026</time></div>
                 <div class="rcard__text" data-text><p>Espacioso, muy organizado y limpio. Todo es muy bonito!</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #9ABB91" aria-hidden="true">C</span><div><h3 class="rcard__name" data-name>Carlos Arturo Her (Turo)</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Carlos Arturo Her</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #9ABB91" aria-hidden="true">C</span><div><p class="rcard__name" data-name>Carlos Arturo H.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Carlos Arturo H.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-07">julio de 2026</time></div>
                 <div class="rcard__text" data-text><p>Un lugar agradable. Una vista ideal. Variedad de restaurantes. El lago espectacular.</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #D8C9A0" aria-hidden="true">J</span><div><h3 class="rcard__name" data-name>Juan Carlos Duque Aristizabal</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Juan Carlos Duque Aristizabal</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #D8C9A0" aria-hidden="true">J</span><div><p class="rcard__name" data-name>Juan Carlos D.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Juan Carlos D.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-09">septiembre de 2026</time></div>
                 <div class="rcard__text" data-text><p>Este parque comercial es una maravilla! ✨ La variedad de tiendas y opciones es excepcional, siempre encuentro lo que busco. El ambiente es súper agradable y moderno, perfecto para pasar el día. ¡Definitivamente lo recomiendo! 💯🛍️😊</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #E9E6D6" aria-hidden="true">J</span><div><h3 class="rcard__name" data-name>Jorge Enrique Peña Millan</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Jorge Enrique Peña Millan</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #E9E6D6" aria-hidden="true">J</span><div><p class="rcard__name" data-name>Jorge Enrique P.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Jorge Enrique P.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-09">septiembre de 2026</time></div>
                 <div class="rcard__text" data-text><p>Un lugar donde puedes desayunar, almorzar y comer encuentras de todo en gastronomía</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #9ABB91" aria-hidden="true">I</span><div><h3 class="rcard__name" data-name>Irenita Ortiz</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Irenita Ortiz</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #9ABB91" aria-hidden="true">I</span><div><p class="rcard__name" data-name>Irenita O.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Irenita O.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-06">junio de 2026</time></div>
                 <div class="rcard__text" data-text><p>Excelente muy lindo mucho verde un lugar muy tranquilo ,acogedor y los restaurantes súper buenos</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #BFD6B6" aria-hidden="true">A</span><div><h3 class="rcard__name" data-name>Alejandro Rueda</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Alejandro Rueda</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #BFD6B6" aria-hidden="true">A</span><div><p class="rcard__name" data-name>Alejandro R.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Alejandro R.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-04">abril de 2026</time></div>
                 <div class="rcard__text" data-text><p>Centro comercial campestre con un hermoso lago en su centro donde puedes disfrutar de variedad de comidas , gym y muchas tiendas más.</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #D9B08C" aria-hidden="true">F</span><div><h3 class="rcard__name" data-name>Fabián</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Fabián</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #D9B08C" aria-hidden="true">F</span><div><p class="rcard__name" data-name>Fabián</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Fabián</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-11">noviembre de 2026</time></div>
                 <div class="rcard__text" data-text><p>Durante mi visita a Cali tuve la oportunidad de conocer el Centro Comercial Lago Verde, ubicado en el sector de Pance. Un lugar agradable, tranquilo y acogedor, que se destaca por su entorno, su arquitectura y la variedad de espacios para disfrutar. Es una excelente alternativa para salir de la rutina, compartir en familia o con amigos y conocer un poco más de los atractivos del sur de Cali. Sin duda, un lugar que recomiendo visitar cuando estén por esta zona del Valle del Cauca.</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #D8C9A0" aria-hidden="true">E</span><div><h3 class="rcard__name" data-name>Elizabeth Vargas</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Elizabeth Vargas</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #D8C9A0" aria-hidden="true">E</span><div><p class="rcard__name" data-name>Elizabeth V.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Elizabeth V.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-11">noviembre de 2026</time></div>
                 <div class="rcard__text" data-text><p>Divino</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #E9E6D6" aria-hidden="true">L</span><div><h3 class="rcard__name" data-name>Luis Riascos</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Luis Riascos</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #E9E6D6" aria-hidden="true">L</span><div><p class="rcard__name" data-name>Luis R.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Luis R.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-10">octubre de 2026</time></div>
                 <div class="rcard__text" data-text><p>Excelente ambiente natural, naturaleza y confort. Tiendas de ropa, comida y café ☕️</p></div>
               </li>
               <li class="rcard" data-review>
-                <div class="rcard__head"><span class="avatar" style="--avatar: #B5AD86" aria-hidden="true">M</span><div><h3 class="rcard__name" data-name>Maria Jopse Escobar</h3></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Maria Jopse Escobar</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
+                <div class="rcard__head"><span class="avatar" style="--avatar: #B5AD86" aria-hidden="true">M</span><div><p class="rcard__name" data-name>Maria J.</p></div><button class="rcard__open" type="button" data-open><span class="sr-only">Leer la opinión completa de Maria J.</span><svg aria-hidden="true"><use href="#rv-arrow"/></svg></button></div>
                 <div class="rcard__rating"><span class="stars" role="img" aria-label="5 de 5 estrellas"></span><time datetime="2026-08">agosto de 2026</time></div>
                 <div class="rcard__text" data-text><p>Amo lago verde, tiene espacios muy lindos y mucha variedad</p></div>
               </li>
