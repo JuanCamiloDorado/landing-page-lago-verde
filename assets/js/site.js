@@ -1,5 +1,5 @@
 // Behaviour shared by every Lago Verde page: mobile menu, floating tab bar,
-// entrance animations, the demo newsletter form and the category search.
+// entrance animations, the demo newsletter form, the category search and the restaurant menu.
 (() => {
   // Mobile menu toggle
   const menu = document.getElementById('mainmenu');
@@ -265,6 +265,16 @@
     e.target.querySelector('.nl-thanks').style.display = 'block';
   });
 
+  // Footer "Créditos de imágenes": a dialog with the authors and licenses of the stock photos
+  const creditsDialog = document.getElementById('creditos-imagenes');
+  if (creditsDialog) {
+    document.querySelectorAll('[data-credits-open]').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); creditsDialog.showModal(); creditsDialog.scrollTop = 0;
+    }));
+    creditsDialog.querySelector('[data-credits-close]').addEventListener('click', () => creditsDialog.close());
+    creditsDialog.addEventListener('click', (e) => { if (e.target === creditsDialog) creditsDialog.close(); }); // backdrop
+  }
+
   // Category pages (gastronomia.html, bienestar.html, tiendas.html): live search over the venue cards.
   // Matches every word typed against the card text plus its data-tags, ignoring accents and case.
   const norm = (t) => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -288,5 +298,143 @@
     };
     input.addEventListener('input', update);
     update();
+  });
+
+  // Restaurant page menu (la-romanezca.html): dish search, "Ver N platos más", section tabs that
+  // follow the scroll, and a dialog with the full dish (photo, whole description, every price).
+  document.querySelectorAll('[data-menu]').forEach((menuEl) => {
+    const sections = [...menuEl.querySelectorAll('[data-section]')];
+    const dishes = [...menuEl.querySelectorAll('.dish')];
+    const navLinks = [...menuEl.querySelectorAll('.menu-nav a')];
+    const navList = menuEl.querySelector('.menu-nav ul');
+    const input = menuEl.querySelector('[data-menu-search]');
+    const count = menuEl.querySelector('[data-menu-count]');
+    const empty = menuEl.querySelector('[data-menu-empty]');
+    const linkFor = (section) => navLinks.find((a) => a.hash === `#${section.id}`);
+
+    // "Ver N platos más" / "Ver menos"
+    const setExpanded = (section, open) => {
+      const btn = section.querySelector('[data-more]');
+      if (!btn) return;
+      btn.dataset.label ??= btn.firstChild.textContent;
+      section.classList.toggle('is-expanded', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.firstChild.textContent = open ? 'Ver menos' : btn.dataset.label;
+    };
+    menuEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-more]');
+      if (!btn) return;
+      const section = btn.closest('[data-section]');
+      const open = !section.classList.contains('is-expanded');
+      setExpanded(section, open);
+      if (!open) section.scrollIntoView({ block: 'start' }); // don't leave the reader far below a shrunk list
+    });
+
+    // Links to a dish that is folded away ("Imperdibles de la casa") unfold its section first
+    document.querySelectorAll('a[href^="#plato-"]').forEach((a) => a.addEventListener('click', () => {
+      const dish = document.getElementById(a.hash.slice(1));
+      if (dish?.hasAttribute('data-extra')) setExpanded(dish.closest('[data-section]'), true);
+    }));
+
+    // Search: every typed word must appear in the dish (name, description, options) or its section title
+    const text = dishes.map((d) => norm(`${d.textContent} ${d.closest('[data-section]').querySelector('h3').textContent}`));
+    const total = dishes.length;
+    const update = () => {
+      const words = norm(input.value).split(/\s+/).filter(Boolean);
+      const searching = words.length > 0;
+      let shown = 0;
+      dishes.forEach((d, i) => {
+        const match = words.every((w) => text[i].includes(w));
+        d.hidden = !match;
+        d.classList.toggle('is-match', searching && match);
+        if (match) shown++;
+      });
+      sections.forEach((s) => {
+        const any = s.querySelector('.dish:not([hidden])');
+        s.hidden = !any;
+        const li = linkFor(s)?.parentElement;
+        if (li) li.hidden = !any;
+      });
+      menuEl.classList.toggle('is-searching', searching);
+      empty.hidden = shown > 0;
+      count.textContent = searching
+        ? `${shown} ${shown === 1 ? 'plato' : 'platos'} de ${total}`
+        : `${total} platos en ${sections.length} secciones`;
+    };
+    input.addEventListener('input', update);
+    update();
+
+    // Section tabs: the current section is the last one whose title has passed under the sticky tabs
+    let activeId = '';
+    const setActive = (section) => {
+      if (section.id === activeId) return;
+      activeId = section.id;
+      navLinks.forEach((a) => a.classList.toggle('is-active', a.hash === `#${section.id}`));
+      const a = linkFor(section);
+      if (a && navList.scrollWidth > navList.clientWidth) {
+        navList.scrollTo({ left: a.offsetLeft - navList.offsetLeft - 104 }); // clear of the left arrow and its fade
+      }
+    };
+    const nav = menuEl.querySelector('.menu-nav');
+    let ticking = false;
+    const spy = () => {
+      ticking = false;
+      const line = nav.getBoundingClientRect().bottom + 60;
+      const shown = sections.filter((s) => !s.hidden);
+      const current = shown.filter((s) => s.querySelector('h3').getBoundingClientRect().top <= line).pop() || shown[0];
+      if (current) setActive(current);
+    };
+    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, { passive: true });
+    input.addEventListener('input', spy);
+    spy();
+    // Fade the tab row's edges while there are more tabs to scroll to
+    const edges = () => {
+      const max = navList.scrollWidth - navList.clientWidth;
+      nav.classList.toggle('has-more-left', navList.scrollLeft > 4);
+      nav.classList.toggle('has-more-right', navList.scrollLeft < max - 4);
+    };
+    navList.addEventListener('scroll', edges, { passive: true });
+    new ResizeObserver(edges).observe(navList);
+    edges();
+    // Mouse users: the arrows page through the tabs, and the wheel moves the row sideways
+    // until it reaches an end (then the page scrolls as usual)
+    nav.querySelectorAll('[data-nav-step]').forEach((b) => b.addEventListener('click', () => {
+      navList.scrollBy({ left: Number(b.dataset.navStep) * navList.clientWidth * 0.7 });
+    }));
+    navList.addEventListener('wheel', (e) => {
+      if (e.ctrlKey || Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return; // pinch zoom or a real sideways swipe
+      const max = navList.scrollWidth - navList.clientWidth;
+      const goingRight = e.deltaY > 0;
+      if ((goingRight && navList.scrollLeft >= max - 1) || (!goingRight && navList.scrollLeft <= 0)) return;
+      e.preventDefault();
+      navList.scrollBy({ left: e.deltaY, behavior: 'instant' }); // the row's smooth scrolling would lag behind the wheel
+    }, { passive: false });
+
+    // Dish dialog, filled from the row that was clicked
+    const dialog = document.querySelector('[data-dish-dialog]');
+    if (!dialog) return;
+    const dImg = dialog.querySelector('[data-dish-img]');
+    const fill = (dish) => {
+      const img = dish.querySelector('img.dish__img');
+      dImg.hidden = !img;
+      if (img) { dImg.src = img.currentSrc || img.src; dImg.alt = dish.querySelector('.dish__open').textContent; }
+      else dImg.removeAttribute('src');
+      dialog.querySelector('[data-dish-section]').textContent = dish.closest('[data-section]').querySelector('h3').textContent;
+      dialog.querySelector('[data-dish-name]').textContent = dish.querySelector('.dish__open').textContent;
+      dialog.querySelector('[data-dish-price]').innerHTML = dish.querySelector('.dish__price').innerHTML;
+      dialog.querySelector('[data-dish-desc]').innerHTML = dish.querySelector('.dish__desc')?.innerHTML ?? '';
+      dialog.querySelector('[data-dish-variants]').innerHTML = dish.querySelector('.dish__variants')?.innerHTML ?? '';
+    };
+    menuEl.addEventListener('click', (e) => {
+      const open = e.target.closest('[data-dish]');
+      if (!open) return;
+      fill(open.closest('.dish'));
+      dialog.showModal();
+      dialog.scrollTop = 0;
+    });
+    let downOnBackdrop = false;
+    dialog.addEventListener('pointerdown', (e) => { downOnBackdrop = e.target === dialog; });
+    dialog.addEventListener('click', (e) => { if (downOnBackdrop && e.target === dialog) dialog.close(); });
+    dialog.querySelector('[data-dish-close]').addEventListener('click', () => dialog.close());
   });
 })();
