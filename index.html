@@ -661,7 +661,7 @@
       <div class="section-head reveal" style="margin-bottom:0">
         <h2 class="display">Tiendas</h2>
       </div>
-      <p class="shop-intro">No todo es café y buena mesa: en Lago Verde también hay tiendas de ropa y calzado, con marcas hechas en Colombia como Coinflip. Recorre las vitrinas frente al lago, mídete lo que te guste sin afán y sal estrenando.</p>
+      <p class="shop-intro">Lago Verde no es solo para comer: entre restaurantes, gimnasio, bienestar y diversión, también encuentras tiendas de ropa, tenis y gorras con marcas como Coinflip y Y-OUT, en Pance, al sur de Cali. Pasea frente al lago, mídete lo que te guste y sal estrenando.</p>
       <div class="shop">
         <!-- Video de la tienda Coinflip: arranca solo cuando la card entra en pantalla (ver script al final) -->
         <div class="shop__card shop__card--fade shop__card--dim" data-inview-play>
@@ -674,14 +674,14 @@
             </div>
           </div>
         </div>
-        <div class="shop__card shop__card--fade" data-hover-play>
-          <video src="https://cdn.thegrounds.com.au/2025/02/ROASTING-WEB-VIDEO-1.mp4" muted loop playsinline preload="none"></video>
-          <div class="shop__overlay" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2025/02/DSC08120-scaled-1.avif)"></div>
+        <!-- Video de la tienda Y-OUT: igual que Coinflip, arranca solo al entrar en pantalla -->
+        <div class="shop__card shop__card--fade shop__card--dim" data-inview-play>
+          <video src="assets/tiendas/yout-tienda.mp4" poster="assets/tiendas/yout-tienda-poster.webp" muted loop playsinline preload="none" aria-hidden="true" style="object-position: center 25%"></video>
+          <img class="shop__logo" src="assets/tiendas/yout-logo.webp" alt="Y-OUT" width="400" height="400" loading="lazy">
           <div class="shop__details">
-            <h3 class="display">Catering</h3>
+            <h3 class="display">Moda urbana</h3>
             <div class="shop__buttons">
-              <a class="btn btn--white" href="#">Comprar</a>
-              <a class="btn btn--ghost" href="#">Cotizar</a>
+              <a class="btn btn--white" href="https://www.y-out.com/?utm_campaign=always-on&amp;utm_source=linktree&amp;utm_medium=perfil-instagram" target="_blank" rel="noopener">Comprar<span class="sr-only"> en Y-OUT (abre en una pestaña nueva)</span></a>
             </div>
           </div>
         </div>
@@ -815,13 +815,6 @@
   hero.addEventListener('focusout', (e) => { if (!hero.contains(e.relatedTarget)) resume(); });
   dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
   if (slides.length) show(0);
-
-  // Shop card: play video on hover (original "hover-play-video")
-  document.querySelectorAll('[data-hover-play]').forEach(card => {
-    const v = card.querySelector('video');
-    card.addEventListener('mouseenter', () => v.play().then(() => card.classList.add('is-playing')).catch(() => {}));
-    card.addEventListener('mouseleave', () => { v.pause(); card.classList.remove('is-playing'); });
-  });
 
   // Shop card video that plays by itself while on screen. It isn't fetched until then, and with
   // reduced motion it never starts, so the poster frame stays.
