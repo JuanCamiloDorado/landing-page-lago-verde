@@ -265,6 +265,24 @@
     e.target.querySelector('.nl-thanks').style.display = 'block';
   });
 
+  // Restaurant page "Reservar mesa": a card with the WhatsApp line(s). Each line's number lives only in
+  // its data-wa attribute (country code + number, digits only); the visible number and the link that opens
+  // WhatsApp with a ready-made message are built from it. A URL ending in #reservar opens the card on load.
+  const reserve = document.querySelector('[data-reserve-dialog]');
+  if (reserve) {
+    const fmt = (d) => (/^57\d{10}$/.test(d) ? `+57 ${d.slice(2, 5)} ${d.slice(5, 8)} ${d.slice(8)}` : `+${d}`);
+    const message = 'Hola, La Romanezca. Quiero reservar una mesa en la sede de Lago Verde.\nFecha: \nHora: \nPersonas: ';
+    const lines = [...reserve.querySelectorAll('[data-wa]')];
+    lines.forEach((li) => { li.querySelector('[data-wa-num]').textContent = fmt(li.dataset.wa); });
+    const cta = reserve.querySelector('[data-wa-link]');
+    if (lines[0]) cta.href = `https://wa.me/${lines[0].dataset.wa}?text=${encodeURIComponent(message)}`;
+    const open = () => { if (!reserve.open) { reserve.showModal(); reserve.scrollTop = 0; } };
+    document.querySelectorAll('[data-reserve-open]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+    reserve.querySelector('[data-reserve-close]').addEventListener('click', () => reserve.close());
+    reserve.addEventListener('click', (e) => { if (e.target === reserve) reserve.close(); }); // backdrop
+    if (location.hash === '#reservar') open();
+  }
+
   // Footer "Créditos de imágenes": a dialog with the authors and licenses of the stock photos
   const creditsDialog = document.getElementById('creditos-imagenes');
   if (creditsDialog) {
