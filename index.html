@@ -659,17 +659,18 @@
     <!-- Shop -->
     <section id="shop">
       <div class="section-head reveal" style="margin-bottom:0">
-        <h2 class="display">Tienda</h2>
+        <h2 class="display">Tiendas</h2>
       </div>
+      <p class="shop-intro">No todo es café y buena mesa: en Lago Verde también hay tiendas de ropa y calzado, con marcas hechas en Colombia como Coinflip. Recorre las vitrinas frente al lago, mídete lo que te guste sin afán y sal estrenando.</p>
       <div class="shop">
-        <div class="shop__card" data-hover-play>
-          <video src="https://cdn.thegrounds.com.au/2025/02/ROASTING-WEB-VIDEO-1.mp4" muted loop playsinline preload="metadata"></video>
-          <div class="shop__overlay" style="background-image:url(https://thegrounds.com.au/wp-content/uploads/2025/02/Coffee-scaled-1.avif)"></div>
+        <!-- Video de la tienda Coinflip: arranca solo cuando la card entra en pantalla (ver script al final) -->
+        <div class="shop__card shop__card--fade shop__card--dim" data-inview-play>
+          <video src="assets/tiendas/coinflip-tienda.mp4" poster="assets/tiendas/coinflip-tienda-poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video>
+          <img class="shop__logo" src="assets/tiendas/coinflip-logo.webp" alt="Coinflip" width="400" height="400" loading="lazy">
           <div class="shop__details">
-            <h3 class="display">Café y estilo de vida</h3>
+            <h3 class="display">Moda y estilo de vida</h3>
             <div class="shop__buttons">
-              <a class="btn btn--white" href="#">Comprar</a>
-              <a class="btn btn--ghost" href="#">Mayoristas</a>
+              <a class="btn btn--white" href="https://www.coinflip24.com/" target="_blank" rel="noopener">Comprar<span class="sr-only"> en Coinflip (abre en una pestaña nueva)</span></a>
             </div>
           </div>
         </div>
@@ -820,6 +821,16 @@
     const v = card.querySelector('video');
     card.addEventListener('mouseenter', () => v.play().then(() => card.classList.add('is-playing')).catch(() => {}));
     card.addEventListener('mouseleave', () => { v.pause(); card.classList.remove('is-playing'); });
+  });
+
+  // Shop card video that plays by itself while on screen. It isn't fetched until then, and with
+  // reduced motion it never starts, so the poster frame stays.
+  document.querySelectorAll('[data-inview-play]').forEach(card => {
+    const v = card.querySelector('video');
+    if (reduceMotion) return;
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) v.play().catch(() => {}); else v.pause();
+    }, { rootMargin: '200px 0px' }).observe(card);
   });
 })();
 </script>
