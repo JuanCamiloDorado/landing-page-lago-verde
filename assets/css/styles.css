@@ -213,7 +213,7 @@ h1, h2, h3 { margin: 0; }
 /* ===== Content sections ===== */
 main.wrap { padding-top: 100px; }
 .section-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; padding-bottom: 20px; margin-bottom: 20px; }
-.section-head h2 { font-size: 30px; line-height: normal; color: #000; }
+.section-head h2 { font-size: 30px; line-height: normal; color: #000; text-wrap: balance; }
 .divider { border: 0; border-top: 1px solid var(--c-line); margin: 100px 0 120px; }
 
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
