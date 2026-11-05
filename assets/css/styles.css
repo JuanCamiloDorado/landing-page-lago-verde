@@ -392,7 +392,8 @@ a.bento__card:focus-visible { outline: 3px solid var(--c-primary); outline-offse
   font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--c-primary);
 }
 .moment__icon { width: 26px; height: 26px; color: var(--c-primary); }
-.moment__head h3 { font-size: clamp(28px, 3.2vw, 44px); line-height: 1.1; color: #000; }
+/* Kept below the section h2 (30px, 24px on mobile) so the section title leads */
+.moment__head h3 { font-size: clamp(22px, 1.9vw, 26px); line-height: 1.15; color: #000; }
 .moment__head p { margin: 18px 0 0; font-size: 18px; line-height: 1.6; color: var(--c-grey-dark); }
 
 /* Activity cards: full-bleed photo with a floating white caption and a round arrow */
@@ -410,22 +411,24 @@ a.bento__card:focus-visible { outline: 3px solid var(--c-primary); outline-offse
 }
 .activity__img--pending img { width: 46%; max-width: 180px; height: auto; margin-bottom: 90px; opacity: .9; }
 .activity__card {
-  position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1;
-  padding: 26px 24px 24px; border-radius: 16px; background: var(--c-white);
+  position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 1;
+  padding: 20px 22px 20px; border-radius: 16px; background: var(--c-white);
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .25);
 }
 .activity__card h4 {
-  margin: 0 0 8px; padding-right: 40px; font-family: var(--f-display); font-stretch: var(--display-stretch); font-weight: 700;
+  margin: 0 0 6px; padding-right: 40px; font-family: var(--f-display); font-stretch: var(--display-stretch); font-weight: 700;
   font-size: 19px; line-height: 1.2; color: var(--c-text);
 }
 .activity__card p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--c-grey-dark); }
 .activity__arrow {
-  position: absolute; top: -24px; right: 22px; display: grid; place-items: center;
+  position: absolute; top: -24px; right: 20px; display: grid; place-items: center;
   width: 48px; height: 48px; border-radius: 50%; background: var(--c-primary); color: var(--c-white);
-  box-shadow: 0 6px 16px -6px rgba(23, 61, 44, .6); transition: background-color .25s ease, transform .25s ease;
+  box-shadow: 0 6px 16px -6px rgba(23, 61, 44, .6); transition: background-color .25s ease;
 }
-.activity__arrow svg { width: 18px; height: 18px; }
-.activity:hover .activity__arrow { background: var(--c-accent); transform: rotate(45deg); }
+.activity__arrow svg { width: 20px; height: 20px; transition: transform .25s ease; }
+/* Internal links: a right arrow that nudges forward instead of an "external" diagonal one */
+.activity:hover .activity__arrow, .activity:focus-visible .activity__arrow { background: var(--c-accent); }
+.activity:hover .activity__arrow svg, .activity:focus-visible .activity__arrow svg { transform: translateX(3px); }
 .activity:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 4px; }
 
 /* Plan your visit band */
@@ -480,8 +483,8 @@ a.bento__card:focus-visible { outline: 3px solid var(--c-primary); outline-offse
 .reveal.is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .activity__img, .activity__arrow { transition: none; }
-  .activity:hover .activity__img, .activity:hover .activity__arrow { transform: none; }
+  .activity__img, .activity__arrow, .activity__arrow svg { transition: none; }
+  .activity:hover .activity__img, .activity:hover .activity__arrow svg, .activity:focus-visible .activity__arrow svg { transform: none; }
   .hero__slide { transition: none; }
 }
 
@@ -565,7 +568,7 @@ a.bento__card:focus-visible { outline: 3px solid var(--c-primary); outline-offse
   .moment__head p { font-size: 16px; }
   .activities { grid-template-columns: 1fr; gap: 20px; }
   .activity { height: 400px; border-radius: 20px; }
-  .activity__card { left: 14px; right: 14px; bottom: 14px; padding: 24px 20px 20px; }
+  .activity__card { left: 12px; right: 12px; bottom: 12px; padding: 20px 18px 18px; }
   .arch { min-height: 440px; }
   .shop { flex-direction: column; }
   .shop__details h3 { font-size: 20px; }

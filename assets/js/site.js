@@ -31,6 +31,27 @@
   }), { threshold: 0.2 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+  // "De día y de noche": captions in the same row share the tallest one's height,
+  // so their tops and round arrows line up whatever the length of the text.
+  document.querySelectorAll('.activities').forEach((group) => {
+    const captions = [...group.querySelectorAll('.activity__card')];
+    const equalize = () => {
+      captions.forEach((c) => { c.style.minHeight = ''; });
+      const rows = new Map();
+      captions.forEach((c) => {
+        const top = Math.round(c.parentElement.getBoundingClientRect().top);
+        rows.set(top, [...(rows.get(top) || []), c]);
+      });
+      rows.forEach((row) => {
+        if (row.length < 2) return;
+        const tallest = Math.max(...row.map((c) => c.offsetHeight));
+        row.forEach((c) => { c.style.minHeight = `${tallest}px`; });
+      });
+    };
+    new ResizeObserver(equalize).observe(group); // also runs once on load
+    document.fonts?.ready.then(equalize);        // web fonts change line wrapping
+  });
+
   // Demo newsletter form (no network request)
   document.getElementById('nl-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
