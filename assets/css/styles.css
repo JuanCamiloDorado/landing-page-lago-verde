@@ -839,6 +839,26 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
 }
 .nl-submit:hover { background: #153c2a; }
 .nl-thanks { display: none; font-size: 15px; color: var(--c-primary); }
+/* Link / info columns to the right of the newsletter */
+.footer-cols {
+  flex: 1; margin-left: clamp(32px, 5vw, 120px); padding-top: 4px;
+  display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.1fr) minmax(0, 1.1fr); gap: 32px;
+}
+.footer-col h2 { font-size: 18px; line-height: 1.5; margin-bottom: 20px; }
+.footer-col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.footer-col a { color: var(--c-text); text-decoration: none; font-size: 16px; transition: color .2s ease; }
+.footer-col a:hover { color: var(--c-primary); }
+.footer-col address { font-style: normal; font-size: 16px; line-height: 1.6; color: var(--c-brown); }
+.footer-hours { margin: 16px 0 0; font-size: 16px; line-height: 1.6; color: var(--c-brown); }
+.footer-hours strong { color: var(--c-text); font-weight: 600; }
+.footer-col .footer-perks { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 20px; }
+.footer-perks li {
+  padding: 4px 10px; border: 1px solid var(--c-line); border-radius: 999px;
+  font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--c-grey-dark);
+}
+.footer-col .footer-more { display: inline-flex; align-items: center; gap: 6px; color: var(--c-primary); font-weight: 600; }
+.footer-more svg { width: 16px; height: 16px; transition: transform .2s ease; }
+.footer-more:hover svg { transform: translateX(3px); }
 .socials { display: flex; gap: 26px; margin: 60px 0 30px; padding: 0; list-style: none; }
 .socials a { display: block; color: var(--c-text); transition: color .2s ease; }
 .socials a:hover { color: var(--c-primary); }
@@ -897,6 +917,7 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
     grid-template-areas: "rest rest pan" "rest rest pan" "bar gym kids" "flo lic bea";
   }
   .newsletter { flex-basis: 100%; }
+  .footer-cols { flex-basis: 100%; margin: 20px 0 0; }
 }
 @media (max-width: 767px) {
   /* Phones: no tab row. At the top the hero menu shows logo, icons and hamburger (its panel
@@ -954,6 +975,8 @@ html:has(.rv-dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
   .shop { flex-direction: column; }
   .shop__details h3 { font-size: 20px; }
   .divider { margin: 60px 0 70px; }
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .footer-cols > :last-child { grid-column: 1 / -1; }
   .footer-bottom ul, .footer-bottom .credits { flex-basis: 100%; justify-content: center; }
   .footer-bottom .credits { margin-top: 16px; }
 }
